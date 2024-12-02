@@ -524,6 +524,11 @@ main {
 
 .about-text p { margin-bottom: 15px; }
 
+.about-text p a {
+  display: inline;
+  white-space: normal;
+  word-break: normal;
+}
 
 
 /**
@@ -1897,4 +1902,25 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .timeline-text { max-width: 700px; }
 
+}
+
+/**
+* news
+*/
+
+.news .article-title { margin-bottom: 15px; }
+
+.news-text {
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-300);
+  line-height: 1.6;
+}
+
+.news-text p { margin-bottom: 15px; }
+
+.news-text p a {
+  display: inline;
+  white-space: normal;
+  word-break: normal;
 }
