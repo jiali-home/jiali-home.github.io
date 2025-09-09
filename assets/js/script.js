@@ -157,3 +157,90 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
   });
 }
+
+
+// --- Dynamic content: News & Publications ---
+
+async function fetchJSON(path) {
+  try {
+    const res = await fetch(path, { cache: 'no-cache' });
+    if (!res.ok) throw new Error(`Failed to fetch ${path}`);
+    return await res.json();
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+}
+
+function createLinkHTML(text, links) {
+  if (!links || !links.length) return text;
+  let html = text;
+  // Append links at the end in parentheses if not embedded
+  const tail = links.map(l => `<a href="${l.href}">${l.label}</a>`).join(', ');
+  if (tail) html += ` (${tail})`;
+  return html;
+}
+
+function renderNews(items) {
+  const container = document.getElementById('news-list');
+  if (!container || !Array.isArray(items)) return;
+  // Sort by date desc (YYYY-MM)
+  items.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  container.innerHTML = items.map(item => {
+    const html = createLinkHTML(item.text, item.links);
+    // Each news in one line: date + text inline
+    return `<p><span class="news-date">${item.date}:</span> ${html}</p>`;
+  }).join('\n');
+}
+
+function escapeHTML(s) {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+function renderPublications(items) {
+  const list = document.getElementById('pubs-list');
+  if (!list || !Array.isArray(items)) return;
+  // Sort by date desc
+  items.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  const liHTML = items.map(p => {
+    const authors = (p.authors || []).map(name => {
+      // Bold Jia Li in author list
+      return name === 'Jia Li' ? `<strong>${escapeHTML(name)}</strong>` : escapeHTML(name);
+    }).join(', ');
+    const title = escapeHTML(p.title || '');
+    const tag = p.tag ? `[${escapeHTML(p.tag)}]` : '';
+    const description = escapeHTML(p.description || '');
+    const image = p.image || '';
+    const link = p.link || '#';
+    const alt = title;
+    return `
+      <li class="blog-post-item">
+        <a href="${link}">
+          <figure class="blog-banner-box">
+            <img src="${image}" alt="${alt}" loading="lazy">
+          </figure>
+          <div class="blog-content">
+            <h3 class="h3 blog-item-title">${tag ? `${tag} ` : ''}${title}</h3>
+            <div class="blog-meta">
+              <p class="blog-category">${authors}</p>
+            </div>
+            <p class="blog-text">${description}</p>
+          </div>
+        </a>
+      </li>`;
+  }).join('\n');
+  list.innerHTML = liHTML;
+}
+
+(async function initDynamicSections() {
+  // News
+  const news = await fetchJSON('./assets/data/news.json');
+  if (news) renderNews(news);
+
+  // Publications
+  const pubs = await fetchJSON('./assets/data/publications.json');
+  if (pubs) renderPublications(pubs);
+})();

@@ -1,0 +1,57 @@
+[
+  {
+    "title": "From Waveforms to Pixels: A Survey on Audio-Visual Segmentation",
+    "tag": "Preprint",
+    "authors": ["Jia Li", "Yapeng Tian"],
+    "image": "./assets/images/avs_survey_arch.png",
+    "description": "A comprehensive survey on audio-visual segmentation, covering various methods, datasets, and future directions.",
+    "link": "https://arxiv.org/abs/2508.03724",
+    "date": "2025-07"
+  },
+  {
+    "title": "Do Audio-Visual Segmentation Models Truly Segment Sounding Objects?",
+    "tag": "Under Review",
+    "authors": ["Jia Li", "Wenjie Zhao", "Ziru Huang", "Yunhui Guo", "Yapeng Tian"],
+    "image": "./assets/images/robust-avs.png",
+    "description": "“AVSBench-Robust,” a comprehensive benchmark and framework addressing visual bias in audio-visual segmentation.",
+    "link": "https://arxiv.org/abs/2502.00358",
+    "date": "2024-10"
+  },
+  {
+    "title": "Robust Open-Set Test-Time Adaptation",
+    "tag": "Under Review",
+    "authors": ["Wenjie Zhao", "Jia Li", "Xin Dong", "Yapeng Tian", "Yu Xiang", "Yunhui Guo"],
+    "image": "./assets/images/TTA_OOD.png",
+    "description": "ROSETTA decouples csID classification and csOOD detection, enhancing OOD detection and maintaining ID accuracy in open-set TTA.",
+    "link": "#",
+    "date": "2024-09"
+  },
+  {
+    "title": "Segment Any Out-of-Distribution Object",
+    "tag": "CVPR 2024",
+    "authors": ["Wenjie Zhao", "Jia Li", "Xin Dong", "Yu Xiang", "Yunhui Guo"],
+    "image": "./assets/images/s2m.png",
+    "description": "S2M transforms anomaly scores into direct segmentation prompts, improving accuracy and reducing mask fragmentation.",
+    "link": "https://arxiv.org/abs/2311.16516",
+    "date": "2024-02"
+  },
+  {
+    "title": "LLM Reliable",
+    "tag": "KDD 2024 Workshop",
+    "authors": ["Kevin Wang", "Subre Moktar", "Jia Li", "Kangshuo Li", "Feng Chen"],
+    "image": "./assets/images/PTrue Case Study.svg",
+    "description": "Measuring Aleatoric and Epistemic Uncertainty in LLMs: Empirical Evaluation on ID and OOD QA Tasks.",
+    "link": "https://ai-activities.github.io/UDM-workshop-24/ap/",
+    "date": "2024-08"
+  },
+  {
+    "title": "AV-Mamba",
+    "tag": "CVPR 2024 Workshop",
+    "authors": ["Ziru Huang", "Jia Li", "Wenjie Zhao", "Yunhui Guo", "Yapeng Tian"],
+    "image": "./assets/images/av_mamba.png",
+    "description": "Cross-modality selective state space models for audio-visual question answering.",
+    "link": "https://sightsound.org/papers/2024/Huang_AV-Mamba_Cross-Modality_Selective_State_Space_Models_for_Audio-Visual_Question_Answering.pdf",
+    "date": "2024-05"
+  }
+]
+

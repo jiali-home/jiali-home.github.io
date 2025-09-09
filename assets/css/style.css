@@ -200,6 +200,10 @@ article {
   margin: 16px 0;
 }
 
+/* News list inline formatting */
+#news-list .news-date { display: inline; margin-right: 6px; font-weight: 500; }
+#news-list a { display: inline; }
+
 .icon-box {
   position: relative;
   background: var(--border-gradient-onyx);

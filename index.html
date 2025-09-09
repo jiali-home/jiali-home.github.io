@@ -212,30 +212,8 @@
         <h2 class="h2 article-title">News</h2>
       </header>
 
-      <section class="about-text">
-        <p> 
-          <!-- 11/2024: I was in the <a href="https://neurips.cc/Conferences/2024/ProgramCommittee#top-reviewers">top reviewers</a> for NeurIPS 2024! -->
-          11/2024: I was in the top reviewers for NeurIPS 2024!
-        </p>            
-        <p> 
-          09/2024: I will serve as a Reviewer for ICLR 2025.
-        </p>   
-        <p> 
-          08/2024: One paper is accepted by UCM-KDD 2024. Congratulations to Kevin! 
-        </p>                       
-        <p> 
-          07/2024: I will serve as a Reviewer for NeurIPS 2024.
-        </p>        
-        <p> 
-          <!-- 06/2024: I will join Prof.<a href="https://www.yapengtian.com/">Prof. Yapeng Tian</a>'s lab to pursue a PhD degree at University of Texas at Dallas! 🌱 -->
-          06/2024: I will join Prof.Prof. Yapeng Tian's lab to pursue a PhD degree at University of Texas at Dallas! 🌱
-        </p>
-        <p> 
-          05/2024: One paper is accepted by CVPR Sight and Sound Workshop 2024. Congratulations to Ziru! 
-        </p>            
-        <p> 
-          02/2024: One paper is accepted by CVPR 2024. Congratulations to Wenjie! 
-        </p>        
+      <section class="about-text" id="news-list">
+        <!-- News items will be injected by script.js from assets/data/news.json -->
       </section>
 
 
@@ -247,109 +225,8 @@
       </header>
 
       <section class="blog-posts">
-        <ul class="blog-posts-list">
-
-
-          <li class="blog-post-item">
-            <a href="#">
-              <figure class="blog-banner-box">
-                <img src="./assets/images/robust-avs.png" alt="Do Audio-Visual Segmentation Models Truly Segment Sounding Objects?" loading="lazy">
-              </figure>
-              <div class="blog-content">
-                <h3 class="h3 blog-item-title">[Under Review] Do Audio-Visual Segmentation Models Truly Segment Sounding Objects?</h3>
-                <div class="blog-meta">
-                  <p class="blog-category"><strong>Jia Li</strong>, Wenjie Zhao, Ziru Huang, Yunhui Guo, Yapeng Tian</p>
-                  <!-- <span class="dot"></span> -->
-                  <!-- <time datetime="2024-02-23"></time> -->
-                </div>                
-                <p class="blog-text">
-                  “AVSBench-Robust,” a comprehensive benchmark and framework addressing visual bias in audio-visual segmentation.
-                </p>
-              </div>
-            </a>
-          </li>
-
-          <li class="blog-post-item">
-            <a href="#">
-              <figure class="blog-banner-box">
-                <img src="./assets/images/TTA_OOD.png" alt="Robust Open-Set Test-Time Adaptation" loading="lazy">
-              </figure>
-              <div class="blog-content">
-                <h3 class="h3 blog-item-title">[Under Review] Robust Open-Set Test-Time Adaptation</h3>
-                <div class="blog-meta">
-                  <p class="blog-category">Wenjie Zhao, <strong>Jia Li</strong>, Xin Dong, Yapeng Tian, Yu Xiang, Yunhui Guo
-                  <!-- <span class="dot"></span> -->
-                  <!-- <time datetime="2024-02-23"></time> -->
-                </div>                
-                <p class="blog-text">
-                  ROSETTA decouples csID classification and csOOD detection, enhancing OOD detection and maintaining ID accuracy in open-set TTA.
-                </p>
-              </div>
-            </a>
-          </li>
-
-
-          <li class="blog-post-item">
-            <a href="#">
-              <figure class="blog-banner-box">
-                <img src="./assets/images/s2m.png" alt="S2M: Segment Any Out-of-Distribution Object" loading="lazy">
-              </figure>
-              <div class="blog-content">
-                <h3 class="h3 blog-item-title">[CVPR 2024]Segment Any Out-of-Distribution Object</h3>
-                <div class="blog-meta">
-                  <p class="blog-category">Wenjie Zhao, <strong>Jia Li</strong>, Xin Dong, Yu Xiang, Yunhui Guo</p>
-                  <!-- <span class="dot"></span> -->
-                  <!-- <time datetime="2024-02-23"></time> -->
-                </div>                
-                <p class="blog-text">
-                  ”S2M”, a novel framework that transforms anomaly scores into direct
-                  segmentation prompts, eliminating the need for threshold selection, thereby improving accuracy and reducing mask
-                  fragmentation.                  
-                </p>
-              </div>
-            </a>
-          </li>
-
-          <li class="blog-post-item">
-            <a href="#">
-              <figure class="blog-banner-box">
-                <img src="./assets/images/PTrue Case Study.svg" alt="LLM Reliable" loading="lazy">
-              </figure>
-              <div class="blog-content">
-                <h3 class="h3 blog-item-title">[KDD 2024 Workshop]LLM Reliable</h3>
-                <div class="blog-meta">
-                  <p class="blog-category">Kevin Wang, Subre Moktar, <strong>Jia Li</strong>, Kangshuo Li, Feng Chen</p>
-                  <!-- <span class="dot"></span> -->
-                  <!-- <time datetime="2022-02-23"></time> -->
-                </div>
-                <p class="blog-text">
-                  Measuring Aleatoric and Epistemic Uncertainty in LLMs: Empirical Evaluation on ID and OOD QA Tasks.
-                </p>
-              </div>
-            </a>
-          </li>
-
-          <li class="blog-post-item">
-            <a href="#">
-              <figure class="blog-banner-box">
-                <img src="./assets/images/av_mamba.png" alt="AV-Mamba" loading="lazy">
-              </figure>
-              <div class="blog-content">
-                <h3 class="h3 blog-item-title">[CVPR 2024 Workshop]AV-Mamba</h3>
-                <div class="blog-meta">
-                  <p class="blog-category">Ziru Huang, <strong>Jia Li</strong>, Wenjie Zhao, Yunhui Guo, Yapeng Tian</p>
-                  <!-- <span class="dot"></span> -->
-                  <!-- <time datetime="2022-02-23"></time> -->
-                </div>
-                <p class="blog-text">
-                  Cross-modality selective state space models for audio-visual question answering.
-                </p>
-
-              </div>
-
-            </a>
-          </li>
-
+        <ul class="blog-posts-list" id="pubs-list">
+          <!-- Publications will be injected by script.js from assets/data/publications.json -->
         </ul>
       </section>
 
