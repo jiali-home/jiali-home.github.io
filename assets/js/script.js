@@ -143,18 +143,32 @@ const pages = document.querySelectorAll("[data-page]");
 // add event to all nav link
 for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
+    const label = this.innerHTML.trim().toLowerCase();
 
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
+    // If user clicks "Resume", open the PDF in a new tab
+    if (label === "resume") {
+      window.open("./assets/Resume_Jia_Li.pdf", "_blank", "noopener");
+      return;
+    }
+
+    // Switch visible page based on label
+    for (let j = 0; j < pages.length; j++) {
+      if (label === pages[j].dataset.page) {
+        pages[j].classList.add("active");
         window.scrollTo(0, 0);
       } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
+        pages[j].classList.remove("active");
       }
     }
 
+    // Update nav link active state (independent of pages list length)
+    for (let k = 0; k < navigationLinks.length; k++) {
+      if (navigationLinks[k] === this) {
+        navigationLinks[k].classList.add("active");
+      } else {
+        navigationLinks[k].classList.remove("active");
+      }
+    }
   });
 }
 
