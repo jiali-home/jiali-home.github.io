@@ -1,0 +1,9 @@
+[
+  {
+    "title": "Hello, World",
+    "date": "2024-09-01",
+    "summary": "Kicking off the blog with a quick intro.",
+    "image": "./assets/images/project-1.jpg",
+    "link": "./blog/hello-world.html"
+  }
+]

@@ -151,6 +151,12 @@ for (let i = 0; i < navigationLinks.length; i++) {
       return;
     }
 
+    // If user clicks "Blog", go to Jekyll blog index
+    if (label === "blog") {
+      window.location.href = "./blog/";
+      return;
+    }
+
     // Switch visible page based on label
     for (let j = 0; j < pages.length; j++) {
       if (label === pages[j].dataset.page) {
@@ -257,4 +263,40 @@ function renderPublications(items) {
   // Publications
   const pubs = await fetchJSON('./assets/data/publications.json');
   if (pubs) renderPublications(pubs);
+  
+  // Blog
+  const blog = await fetchJSON('./assets/data/blog.json');
+  if (blog) renderBlog(blog);
 })();
+
+// --- Blog rendering ---
+function renderBlog(items) {
+  const list = document.getElementById('blog-list');
+  if (!list || !Array.isArray(items)) return;
+  // Sort by date desc (YYYY-MM or YYYY-MM-DD)
+  items.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  const liHTML = items.map(p => {
+    const title = escapeHTML(p.title || '');
+    const date = escapeHTML(p.date || '');
+    const summary = escapeHTML(p.summary || '');
+    const image = p.image || '';
+    const link = p.link || '#';
+    const alt = title;
+    return `
+      <li class="blog-post-item">
+        <a href="${link}">
+          <figure class="blog-banner-box">
+            ${image ? `<img src="${image}" alt="${alt}" loading="lazy">` : ''}
+          </figure>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <p class="blog-category">${date}</p>
+            </div>
+            <h3 class="h3 blog-item-title">${title}</h3>
+            <p class="blog-text">${summary}</p>
+          </div>
+        </a>
+      </li>`;
+  }).join('\n');
+  list.innerHTML = liHTML;
+}

@@ -129,6 +129,11 @@
 
 }
 
+/* Dark theme variables */
+/* GitHub Markdown adjustments */
+.markdown-body { background: transparent; color: var(--white-1); }
+.markdown-body a { color: #0969da; }
+
 
 
 

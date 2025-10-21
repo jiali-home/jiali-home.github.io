@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} | Jia Li</title>
+  <link rel="shortcut icon" href="/assets/images/logo.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/rouge-github.css">
+  <!-- GitHub Markdown CSS for GitHub-like rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.5.1/github-markdown-light.min.css">
+  <script>
+    // MathJax v3 configuration for inline ($...$) and display ($$...$$) math
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    /* Prevent global wide-screen flex from affecting post pages */
+    .post-wrapper { max-width: 900px; margin: 2rem auto; padding: 0 1rem; display: block !important; }
+    .markdown-body { background: transparent; color: var(--white-1); }
+    /* Override global `article { display:none; }` from site CSS */
+    .post-content { display: block !important; }
+    .post-title { font-size: 2rem; margin-bottom: 0.25rem; }
+    .post-date { color: #888; margin-bottom: 1.5rem; }
+    .post-content p, .post-content li { line-height: 1.7; }
+    /* Fix: global reset sets span { display:block } which breaks Rouge tokens */
+    .post-content pre span,
+    .post-content code span { display: inline !important; }
+    .post-content pre { white-space: pre; }
+    .post-content code { white-space: pre-wrap; word-break: normal; overflow-wrap: normal; }
+    /* Headings spacing in posts */
+    .post-content h2 { margin-top: 2rem; margin-bottom: 0.75rem; line-height: 1.3; }
+    .post-content h3 { margin-top: 1.5rem; margin-bottom: 0.5rem; line-height: 1.35; }
+    .post-content h4 { margin-top: 1.25rem; margin-bottom: 0.4rem; }
+    /* Paragraph spacing */
+    .post-content p { margin: 0 0 1rem; }
+    /* Scope fixes so post Markdown matches GitHub expectations */
+    .markdown-body a,
+    .markdown-body img,
+    .markdown-body span,
+    .markdown-body button,
+    .markdown-body time { display: inline; }
+    /* Restore list bullets/numbers inside blog posts */
+    .post-content ul li { list-style: disc; }
+    .post-content ol li { list-style: decimal; }
+    .post-content ul, .post-content ol { padding-left: 1.25rem; margin: 0 0 1rem; }
+    .post-content li { margin: 0.25rem 0; }
+    /* Code blocks */
+    .post-content pre { background: var(--eerie-black-1); padding: 0.75rem 1rem; border-radius: 10px; overflow: auto; }
+    .post-content code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 0.95em; }
+    .post-content img { max-width: 100%; height: auto; }
+    /* Simple vertical spacers usable via raw HTML in Markdown */
+    .post-content .spacer-1 { height: 0.75rem; }
+    .post-content .spacer-2 { height: 1.5rem; }
+    .post-content .spacer-3 { height: 2rem; }
+    .back-link { display: inline-block; margin-top: 2rem; color: #7c7cff; }
+  </style>
+</head>
+<body>
+  
+  <main class="post-wrapper">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-date">{{ page.date | date: "%Y-%m-%d" }}</div>
+    <article class="post-content markdown-body">
+      {{ content }}
+    </article>
+    <a class="back-link" href="/blog/">← Back to blog</a>
+    <br>
+    <a class="back-link" href="/index.html">← Back to home</a>
+  </main>
+</body>
+</html>

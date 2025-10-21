@@ -1,0 +1,16 @@
+title: Jia Li
+markdown: kramdown
+highlighter: rouge
+permalink: /blog/:year/:month/:day/:title/
+timezone: UTC
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - README.md
+  - .github
+  - website-demo-image
