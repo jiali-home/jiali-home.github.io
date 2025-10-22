@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Decoding the Unknown - A Look into Uncertainty Estimation Methods for Language Models | Jia Li</title>
+  <link rel="shortcut icon" href="/assets/images/logo.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/rouge-github.css">
+  <!-- GitHub Markdown CSS for GitHub-like rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.5.1/github-markdown-light.min.css">
+  <script>
+    // MathJax v3 configuration for inline ($...$) and display ($$...$$) math
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    /* Prevent global wide-screen flex from affecting post pages */
+    .post-wrapper { max-width: 900px; margin: 2rem auto; padding: 0 1rem; display: block !important; }
+    .markdown-body { background: transparent; color: var(--white-1); }
+    /* Override global `article { display:none; }` from site CSS */
+    .post-content { display: block !important; }
+    .post-title { font-size: 2rem; margin-bottom: 0.25rem; }
+    .post-date { color: #888; margin-bottom: 1.5rem; }
+    .post-content p, .post-content li { line-height: 1.7; }
+    /* Fix: global reset sets span { display:block } which breaks Rouge tokens */
+    .post-content pre span,
+    .post-content code span { display: inline !important; }
+    .post-content pre { white-space: pre; }
+    .post-content code { white-space: pre-wrap; word-break: normal; overflow-wrap: normal; }
+    /* Headings spacing in posts */
+    .post-content h2 { margin-top: 2rem; margin-bottom: 0.75rem; line-height: 1.3; }
+    .post-content h3 { margin-top: 1.5rem; margin-bottom: 0.5rem; line-height: 1.35; }
+    .post-content h4 { margin-top: 1.25rem; margin-bottom: 0.4rem; }
+    /* Paragraph spacing */
+    .post-content p { margin: 0 0 1rem; }
+    /* Scope fixes so post Markdown matches GitHub expectations */
+    .markdown-body a,
+    .markdown-body img,
+    .markdown-body span,
+    .markdown-body button,
+    .markdown-body time { display: inline; }
+    /* Restore list bullets/numbers inside blog posts */
+    .post-content ul li { list-style: disc; }
+    .post-content ol li { list-style: decimal; }
+    .post-content ul, .post-content ol { padding-left: 1.25rem; margin: 0 0 1rem; }
+    .post-content li { margin: 0.25rem 0; }
+    /* Code blocks */
+    .post-content pre { background: var(--eerie-black-1); padding: 0.75rem 1rem; border-radius: 10px; overflow: auto; }
+    .post-content code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 0.95em; }
+    .post-content img { max-width: 100%; height: auto; }
+    /* Simple vertical spacers usable via raw HTML in Markdown */
+    .post-content .spacer-1 { height: 0.75rem; }
+    .post-content .spacer-2 { height: 1.5rem; }
+    .post-content .spacer-3 { height: 2rem; }
+    .back-link { display: inline-block; margin-top: 2rem; color: #7c7cff; }
+  </style>
+</head>
+<body>
+  
+  <main class="post-wrapper">
+    <h1 class="post-title">Decoding the Unknown - A Look into Uncertainty Estimation Methods for Language Models</h1>
+    <div class="post-date">2025-10-22</div>
+    <article class="post-content markdown-body">
+      <p>In the rapidly evolving world of Large Language Models (LLMs), these powerful AI tools are becoming increasingly sophisticated. But how certain are we about their answers? Just like humans, LLMs can be unsure, and understanding this “uncertainty” is crucial for their reliable deployment. This is where Uncertainty Estimation (UE) methods come into play, offering ways to quantify how confident an LLM is in its responses.</p>
+
+<hr />
+
+<h2 id="0-notation--setup">0) Notation &amp; Setup</h2>
+
+<p>Let an instruction/prompt be $x$. An LLM with parameters $\theta$ defines a next-token distribution
+\(p_\theta(y_t \mid x, y_{&lt;t}) = \mathrm{softmax}\!\left(\frac{z_\theta(x,y_{&lt;t})}{\tau}\right),\)
+where $z_\theta$ are logits and $\tau&gt;0$ is (optional) temperature. A <strong>sampled response</strong> (completion) is a token sequence $y = (y_1,\dots,y_T)$.</p>
+
+<p>We will often draw <strong>multiple samples</strong>
+\(\mathcal{S}=\{y^{(1)}, \ldots, y^{(K)}\)\sim p_\theta(\cdot\mid x)
+$$
+by sampling with nucleus/top-$p$ or top-$k$ decoding. For embedding-based methods, define an encoder $f(\cdot)$ (e.g., a sentence embedding model) that maps any text to a vector in $\mathbb{R}^d$.</p>
+
+<hr />
+
+<h2 id="1-semantic-consistency-responses-when-meaning-matters">1. Semantic Consistency Responses: When Meaning Matters</h2>
+
+<p><strong>Idea.</strong> These methods tap into the meaning of an LLM’s responses. Imagine asking an LLM a question multiple times – if it gives slightly different but semantically similar answers each time, it’s likely more confident than if its answers widely diverge in meaning.</p>
+
+<h3 id="11-semantic-entropy">1.1 Semantic Entropy.</h3>
+
+<p>This method uses models to generate several responses and then measures how semantically similar they are. High similarity points to high certainty.</p>
+
+<p>Compute pairwise semantic similarity 
+\(s_{ij}=\cos\big(f(y^{(i)}), f(y^{(j)})\big)\in[-1,1],\)
+where each $f(y)$ is a semantic embedding (e.g., from a model like DeBERTa or Sentence-BERT).<br />
+Cosine similarity measures the <strong>semantic closeness</strong> between two responses because embedding models are trained so that semantically similar texts have vectors pointing in similar directions. Specifically:
+\(\cos(\theta) = \frac{f(y^{(i)}) \cdot f(y^{(j)})}{\|f(y^{(i)})\|\|f(y^{(j)})\|}.\)</p>
+<ul>
+  <li>$s_{ij}=1$: identical meaning</li>
+  <li>$s_{ij}=0$: unrelated meaning</li>
+  <li>$s_{ij}=-1$: opposite or contradictory meaning</li>
+</ul>
+
+<p>Convert these pairwise similarities into <strong>paraphrase clusters</strong> \(C_1,\dots,C_M\) (e.g., by agglomerative clustering with a cosine threshold $\gamma$).<br />
+Let $q_m = |C_m|/K$. Define the <strong>semantic entropy</strong>:
+\(H_{\text{sem}}(x) \;=\; -\sum_{m=1}^{M} q_m \log q_m.\)</p>
+<ul>
+  <li><strong>Low $H_{\text{sem}}$</strong> (mass on 1–2 clusters) ⇒ consistent semantics ⇒ <strong>low uncertainty</strong>.</li>
+  <li><strong>High $H_{\text{sem}}$</strong> ⇒ fragmented meanings ⇒ <strong>high uncertainty</strong>.</li>
+</ul>
+
+<h3 id="12-graph-laplacian-consistency">1.2 Graph Laplacian Consistency</h3>
+
+<p>This family of methods represents each response as a node in a <strong>semantic similarity graph</strong>, where edges connect semantically related answers.<br />
+The intuition: if the graph is well connected (high overall similarity), the model is confident; if it breaks into weakly connected clusters, the model is uncertain.</p>
+
+<h4 id="a-standard-laplacian-consistency">(a) Standard Laplacian Consistency</h4>
+<p>Build a similarity graph $W\in\mathbb{R}^{K\times K}$ with cosine similarities:
+\(W_{ij} = \max(\cos(f(y^{(i)}), f(y^{(j)})), 0).\)
+Define the degree matrix $D=\mathrm{diag}(\sum_j W_{ij})$ and Laplacian $L=D-W$.<br />
+The <strong>algebraic connectivity</strong> (second-smallest eigenvalue) $\lambda_2(L)$ measures how well-connected the graph is.</p>
+
+<ul>
+  <li>Large $\lambda_2(L)$: one cohesive cluster → <strong>low uncertainty</strong></li>
+  <li>Small $\lambda_2(L)$: several weakly connected clusters → <strong>high uncertainty</strong></li>
+</ul>
+
+<p>We define the uncertainty score:
+\(U_{\text{Lap}}(x) = \frac{1}{\lambda_2(L) + \epsilon}.\)</p>
+
+<h4 id="b-eigenvalue-laplacian-nli-based-variant">(b) Eigenvalue Laplacian (NLI-based variant)</h4>
+<p>Instead of using cosine similarity from embeddings, this variant uses <strong>Natural Language Inference (NLI)</strong> models to compute semantic agreement between pairs of responses.<br />
+For each pair $(y^{(i)}, y^{(j)})$, obtain an NLI “entailment probability”
+\(s_{ij} = p_\text{NLI}\big(y^{(i)} \Rightarrow y^{(j)}\big)\)
+and symmetrize it:
+\(W_{ij} = \tfrac{1}{2}\big[s_{ij} + s_{ji}\big].\)
+This produces a <strong>semantic-agreement graph</strong> $W$.<br />
+Compute the normalized Laplacian $L_\text{norm} = I - D^{-1/2} W D^{-1/2}$ and examine its spectrum.</p>
+
+<ul>
+  <li>A single dense semantic cluster → larger $\lambda_2(L_\text{norm})$</li>
+  <li>Multiple conflicting semantic groups → smaller $\lambda_2(L_\text{norm})$</li>
+</ul>
+
+<p>Define the uncertainty:
+\(U_{\text{EigenLap}}(x) = \frac{1}{\lambda_2(L_\text{norm}) + \epsilon}.\)</p>
+
+<p><strong>Interpretation:</strong><br />
+The NLI-based eigenvalue Laplacian captures <em>semantic consistency at the reasoning level</em>—if different responses logically entail each other (mutual entailment), the Laplacian’s second eigenvalue grows, signaling high confidence.<br />
+If some responses contradict or fail to entail others, the graph splits and $\lambda_2$ drops, indicating uncertainty.</p>
+
+<h3 id="13-eccentricity-in-embedding-space">1.3 Eccentricity in Embedding Space</h3>
+
+<p>The <strong>eccentricity</strong> method quantifies how far the model’s generated responses are spread out in the embedding space.</p>
+
+<p>After generating $K$ responses $y^{(1)}, \dots, y^{(K)}$, we obtain their embeddings $f(y^{(i)}) \in \mathbb{R}^d$.<br />
+We first compute the <strong>mean embedding</strong> (the semantic “center” of all responses):
+\(\mu = \frac{1}{K}\sum_{i=1}^{K} f(y^{(i)}).\)</p>
+
+<p>Then, for each response, we measure how far its embedding is from the mean:
+\(d_i = \big\|f(y^{(i)}) - \mu\big\|_2.\)
+Finally, define the <strong>eccentricity-based uncertainty</strong> as the maximum distance:
+\(U_{\text{ecc}}(x) = \max_i d_i.\)</p>
+
+<h3 id="14-lexical-similarity">1.4 Lexical Similarity</h3>
+
+<p>This baseline measures how <strong>similar the wording</strong> of multiple responses is — without using embeddings or semantic models.<br />
+Instead of understanding meaning, it focuses on <strong>surface-level overlap</strong> of tokens or n-grams.</p>
+
+<h4 id="definition">Definition</h4>
+
+<p>After generating $K$ responses $y^{(1)}, \dots, y^{(K)}$:</p>
+
+<ol>
+  <li><strong>Tokenize</strong> each response into words or subwords.</li>
+  <li>Compute a <strong>pairwise lexical similarity</strong> $s_{\text{lex}}(y^{(i)}, y^{(j)})$ for all pairs $(i,j)$ using a metric such as:
+    <ul>
+      <li><strong>Jaccard similarity</strong> on word sets:
+\(s_{\text{lex}}(y^{(i)}, y^{(j)}) = 
+\frac{|W_i \cap W_j|}{|W_i \cup W_j|},\)
+where $W_i$ and $W_j$ are the sets of unique words in each response.</li>
+      <li><strong>BLEU-like n-gram overlap</strong> for a more fine-grained comparison.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Then average all pairwise scores:
+\(\bar{s}_{\text{lex}} = \frac{2}{K(K-1)} \sum_{i&lt;j} s_{\text{lex}}(y^{(i)}, y^{(j)}).\)</p>
+
+<p>Finally, define lexical uncertainty as:
+\(U_{\text{lex}} = 1 - \bar{s}_{\text{lex}}.\)
+Averaging ensures the value lies in $[0,1]$:</p>
+<ul>
+  <li><strong>High $\bar{s}_{\text{lex}}$</strong> → wording is consistent → <strong>low uncertainty</strong>.</li>
+  <li><strong>Low $\bar{s}_{\text{lex}}$</strong> → wording diverges → <strong>high uncertainty</strong>.</li>
+</ul>
+
+<hr />
+
+<h2 id="2-information-based-responses-the-probability-game">2. Information-Based Responses: The Probability Game</h2>
+
+<p>These methods focus on the raw mechanics of text generation, specifically the probabilities associated with each word or token.</p>
+
+<ul>
+  <li>
+    <p>Perplexity: This widely used metric employs greedy log-likelihoods to measure how well a probability model predicts a sample. In simpler terms, it assesses the “surprise” of the model.</p>
+  </li>
+  <li>
+    <p>Mean Token Entropy: This method calculates the average entropy of every token generated, giving an idea of how much “choice” the model had at each step.</p>
+  </li>
+  <li>
+    <p>Maximum Sequence Probability: It sums the log probabilities of each token in a sequence to determine the overall likelihood of that specific response.</p>
+  </li>
+  <li>
+    <p>Monte Carlo Sequence Entropy: Utilizing Monte Carlo estimates, this method provides a more robust way to determine uncertainty by sampling multiple possible continuations.</p>
+  </li>
+</ul>
+
+<h3 id="21-per-token-entropy-and-mean-token-entropy">2.1 Per-Token Entropy and Mean Token Entropy</h3>
+<p>At step $t$, entropy is
+\(H_t \;=\; -\sum_v p_\theta(v\mid x,y_{&lt;t}) \log p_\theta(v\mid x,y_{&lt;t}).\)
+Define the <strong>mean token entropy</strong>
+\(\bar{H}(x,y) \;=\; \frac{1}{T}\sum_{t=1}^T H_t.\)
+Higher $\bar{H}$ = more branching choices at each step ⇒ <strong>higher uncertainty</strong>.</p>
+
+<h3 id="22-sequence-log-likelihood--perplexity">2.2 Sequence Log-Likelihood &amp; Perplexity</h3>
+<p>The sequence log-probability:
+\(\log p_\theta(y\mid x) \;=\; \sum_{t=1}^T \log p_\theta\!\big(y_t \mid x,y_{&lt;t}\big).\)
+Token-level <strong>perplexity</strong> is
+\(\mathrm{PP}(x,y) = \exp\!\Big(-\tfrac{1}{T}\log p_\theta(y\mid x)\Big).\)
+Higher perplexity ⇒ the model “finds its own output surprising” ⇒ <strong>higher uncertainty</strong>.</p>
+
+<h3 id="23-monte-carlo-sequence-entropy">2.3 Monte-Carlo Sequence Entropy</h3>
+<p>We want $H\big(p_\theta(\cdot\mid x)\big) = -\sum_y p_\theta(y\mid x)\log p_\theta(y\mid x)$, but the space of $y$ is huge. Use samples $y^{(i)}\sim p_\theta(\cdot\mid x)$ and a self-normalizing estimator:
+\(\hat{H}_{\text{MC}} \;=\; - \sum_{i=1}^{K} w_i \log p_\theta(y^{(i)}\mid x), 
+\quad 
+w_i = \frac{p_\theta(y^{(i)}\mid x)}{\sum_{j} p_\theta(y^{(j)}\mid x)}.\)
+In practice, approximate $p_\theta(y^{(i)}\mid x)$ with token log-probs returned by the model. Higher $\hat{H}_{\text{MC}}$ ⇒ <strong>higher uncertainty</strong>.</p>
+
+<p><strong>Note.</strong> If you can’t get token log-probs, fall back to <strong>semantic</strong> methods (§1).</p>
+
+<hr />
+
+<h2 id="3-density-based-responses-how-crowded-is-the-answer-space">3. Density-Based Responses: How “Crowded” is the Answer Space?</h2>
+
+<p>These methods analyze how <strong>dense</strong> the model’s generated responses are in a shared embedding space.<br />
+Intuitively, if all responses are close together (forming a tight cluster), the model is confident about its answer.<br />
+If the responses scatter widely, it means the model is uncertain and is exploring multiple semantic possibilities.</p>
+
+<p>Let each response embedding be $u_i = f(y^{(i)}) \in \mathbb{R}^d$,<br />
+where $f(\cdot)$ is an embedding model such as DeBERTa, BERT, or OpenAI embeddings.</p>
+
+<h3 id="31-mahalanobis-distance-sequence-level">3.1 Mahalanobis Distance (Sequence Level)</h3>
+
+<p>We first estimate the <strong>center</strong> (mean vector) and <strong>spread</strong> (covariance) of all response embeddings:</p>
+
+\[\hat{\mu} = \frac{1}{K} \sum_{i=1}^{K} u_i, \qquad 
+\hat{\Sigma} = \frac{1}{K-1} \sum_{i=1}^{K} (u_i - \hat{\mu})(u_i - \hat{\mu})^\top.\]
+
+<p>Then, for each response, we measure how far it lies from the center, <strong>normalized by the shape of the cluster</strong> (the covariance).<br />
+This is the <strong>Mahalanobis distance</strong>:</p>
+
+\[d_M(u_i) = \sqrt{(u_i - \hat{\mu})^\top \hat{\Sigma}^{-1} (u_i - \hat{\mu})}.\]
+
+<p>Unlike the plain Euclidean distance, which treats all directions equally, the Mahalanobis distance <strong>accounts for correlations</strong> between embedding dimensions:</p>
+<ul>
+  <li>In directions with high natural variance, a larger spread is tolerated.</li>
+  <li>In tightly constrained directions, even small deviations are penalized.</li>
+</ul>
+
+<p>Hence, $d_M(u_i)$ measures how atypical a given embedding is <strong>relative to the entire cluster</strong>.</p>
+
+<p>We can aggregate these distances in two common ways:</p>
+
+\[U_{\text{Maha}} = \frac{1}{K} \sum_{i=1}^{K} d_M(u_i) 
+\quad \text{or} \quad
+U_{\text{Maha}}^{\max} = \max_i d_M(u_i).\]
+
+<ul>
+  <li><strong>Average distance</strong> → overall cluster spread.</li>
+  <li><strong>Maximum distance</strong> → presence of strong outliers.</li>
+</ul>
+
+<p>Higher $U_{\text{Maha}}$ values indicate that responses are spread out in semantic space, implying <strong>higher uncertainty</strong>.</p>
+
+<h3 id="32-robust-density-estimation">3.2 Robust Density Estimation</h3>
+
+<p>In high-dimensional settings (large $d$, small $K$), the sample covariance $\hat{\Sigma}$ may be ill-conditioned or even singular, making $\hat{\Sigma}^{-1}$ unstable.<br />
+To address this, we use <strong>robust covariance estimators</strong> that stabilize the inverse.</p>
+
+<h4 id="a-shrinkage-estimator">(a) Shrinkage Estimator</h4>
+
+<p>A simple and effective approach is <strong>shrinkage</strong>, blending the sample covariance with the identity matrix:</p>
+
+\[\hat{\Sigma}_\lambda = (1 - \lambda)\,\hat{\Sigma} + \lambda I,\]
+
+<p>where $\lambda \in [0,1]$ controls how much regularization to apply.</p>
+
+<ul>
+  <li>$\lambda = 0$: use full empirical covariance (high variance, possibly unstable).</li>
+  <li>$\lambda = 1$: assume all dimensions are independent with equal variance (too simple, but safe).</li>
+  <li>Intermediate $\lambda$ values (e.g., $0.1$–$0.3$) often yield the best trade-off.</li>
+</ul>
+
+<p>Then we recompute Mahalanobis distances using $\hat{\Sigma}_\lambda$ instead of $\hat{\Sigma}$.</p>
+
+<h4 id="b-minimum-covariance-determinant-mcd">(b) Minimum Covariance Determinant (MCD)</h4>
+
+<p>Another robust approach is the <strong>Minimum Covariance Determinant (MCD)</strong>, which estimates the covariance matrix by focusing on the most central subset of data points (discarding outliers).<br />
+This leads to a covariance estimate that is less sensitive to rare extreme responses that might otherwise distort $\hat{\Sigma}$.</p>
+
+<h4 id="c-dimensionality-reduction">(c) Dimensionality Reduction</h4>
+
+<p>When embeddings have very high dimensionality (e.g., $d = 1024$) and $K$ is small, we can first reduce dimension using <strong>Principal Component Analysis (PCA)</strong>:</p>
+
+\[u_i' = P^\top (u_i - \hat{\mu}), \quad P \in \mathbb{R}^{d \times r}, \, r \ll d.\]
+
+<p>We then compute the Mahalanobis distances in this reduced space ${u_i’}$, where the covariance is more stable.</p>
+
+<h4 id="combined-uncertainty-score">Combined Uncertainty Score</h4>
+
+<p>The robust Mahalanobis uncertainty can be expressed as:</p>
+
+\[U_{\text{RobustMaha}}(x)
+= \frac{1}{K} \sum_{i=1}^K 
+\sqrt{(u_i - \hat{\mu})^\top \hat{\Sigma}_\lambda^{-1} (u_i - \hat{\mu})}.\]
+
+<p>This formulation balances <strong>precision</strong> (capturing true dispersion) with <strong>stability</strong> (avoiding numerical noise in small samples).</p>
+
+<hr />
+
+<h2 id="4-reflexive-responses-asking-the-model-itself">4. Reflexive Responses: Asking the Model Itself</h2>
+
+<h4 id="41-self-judgment--ptrue">4.1 Self-Judgment / P(True)</h4>
+<p>After generating an answer $a$, prompt the LLM to <strong>critique</strong> or verify:</p>
+<blockquote>
+  <p>“Given the question $x$ and answer $a$, how likely is $a$ to be correct? Respond with a probability in $[0,1]$.”</p>
+</blockquote>
+
+<p>Let the returned scalar be $\hat{p}_{\text{true}}$. Define uncertainty
+\(U_{\text{self}} = 1 - \hat{p}_{\text{true}}.\)</p>
+
+
+    </article>
+    <a class="back-link" href="/blog/">← Back to blog</a>
+    <br>
+    <a class="back-link" href="/index.html">← Back to home</a>
+  </main>
+</body>
+</html>
