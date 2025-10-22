@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Measuring Uncertainty Estimation - How to Evaluate Confidence in Language Models | Jia Li</title>
+  <link rel="shortcut icon" href="/assets/images/logo.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/rouge-github.css">
+  <!-- GitHub Markdown CSS for GitHub-like rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.5.1/github-markdown-light.min.css">
+  <script>
+    // MathJax v3 configuration for inline ($...$) and display ($$...$$) math
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+  <style>
+    /* Prevent global wide-screen flex from affecting post pages */
+    .post-wrapper { max-width: 900px; margin: 2rem auto; padding: 0 1rem; display: block !important; }
+    .markdown-body { background: transparent; color: var(--white-1); }
+    /* Override global `article { display:none; }` from site CSS */
+    .post-content { display: block !important; }
+    .post-title { font-size: 2rem; margin-bottom: 0.25rem; }
+    .post-date { color: #888; margin-bottom: 1.5rem; }
+    .post-content p, .post-content li { line-height: 1.7; }
+    /* Fix: global reset sets span { display:block } which breaks Rouge tokens */
+    .post-content pre span,
+    .post-content code span { display: inline !important; }
+    .post-content pre { white-space: pre; }
+    .post-content code { white-space: pre-wrap; word-break: normal; overflow-wrap: normal; }
+    /* Headings spacing in posts */
+    .post-content h2 { margin-top: 2rem; margin-bottom: 0.75rem; line-height: 1.3; }
+    .post-content h3 { margin-top: 1.5rem; margin-bottom: 0.5rem; line-height: 1.35; }
+    .post-content h4 { margin-top: 1.25rem; margin-bottom: 0.4rem; }
+    /* Paragraph spacing */
+    .post-content p { margin: 0 0 1rem; }
+    /* Scope fixes so post Markdown matches GitHub expectations */
+    .markdown-body a,
+    .markdown-body img,
+    .markdown-body span,
+    .markdown-body button,
+    .markdown-body time { display: inline; }
+    /* Restore list bullets/numbers inside blog posts */
+    .post-content ul li { list-style: disc; }
+    .post-content ol li { list-style: decimal; }
+    .post-content ul, .post-content ol { padding-left: 1.25rem; margin: 0 0 1rem; }
+    .post-content li { margin: 0.25rem 0; }
+    /* Code blocks */
+    .post-content pre { background: var(--eerie-black-1); padding: 0.75rem 1rem; border-radius: 10px; overflow: auto; }
+    .post-content code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 0.95em; }
+    .post-content img { max-width: 100%; height: auto; }
+    /* Simple vertical spacers usable via raw HTML in Markdown */
+    .post-content .spacer-1 { height: 0.75rem; }
+    .post-content .spacer-2 { height: 1.5rem; }
+    .post-content .spacer-3 { height: 2rem; }
+    .back-link { display: inline-block; margin-top: 2rem; color: #7c7cff; }
+  </style>
+</head>
+<body>
+  
+  <main class="post-wrapper">
+    <h1 class="post-title">Measuring Uncertainty Estimation - How to Evaluate Confidence in Language Models</h1>
+    <div class="post-date">2025-10-22</div>
+    <article class="post-content markdown-body">
+      <p>In the world of <strong>Large Language Models (LLMs)</strong>, understanding <em>what a model knows</em> is just as important as understanding <em>what it doesn’t</em>.<br />
+Uncertainty Estimation (UE) methods help us quantify a model’s confidence in its outputs — but how do we know if a UE method itself is <strong>effective</strong>?</p>
+
+<p>This blog introduces key evaluation metrics for Uncertainty Estimation, focusing on the <strong>Prediction Rejection Ratio (PRR)</strong> — a principled way to measure how well a UE method distinguishes between reliable and unreliable model predictions.</p>
+
+<hr />
+
+<h2 id="1-why-we-need-to-measure-uncertainty">1. Why We Need to Measure Uncertainty</h2>
+
+<p>LLMs often generate fluent but <strong>incorrect</strong> responses.<br />
+Uncertainty Estimation aims to flag these cases automatically by assigning a numerical <strong>uncertainty score</strong> $U(x)$ to each response.</p>
+
+<p>But different UE methods produce different scores — semantic entropy, Mahalanobis distance, self-judgment probability, etc.<br />
+We therefore need a <strong>quantitative way</strong> to evaluate <em>how useful</em> these uncertainty estimates are in identifying bad answers.</p>
+
+<p>An ideal uncertainty measure should satisfy:</p>
+
+<ul>
+  <li><strong>Inverse correlation</strong>: high uncertainty → low answer quality.</li>
+  <li><strong>Utility</strong>: helps decide whether to accept or reject a generated answer.</li>
+  <li><strong>Consistency</strong>: works across different datasets or prompt types.</li>
+</ul>
+
+<hr />
+
+<h2 id="2-prediction-rejection-ratio-prr-the-core-metric">2. Prediction Rejection Ratio (PRR): The Core Metric</h2>
+
+<p>The <strong>Prediction Rejection Ratio (PRR)</strong> is a unified metric designed to evaluate UE effectiveness.<br />
+It measures how well a UE method can decide <em>when</em> to trust or reject an LLM’s answer.</p>
+
+<hr />
+
+<h3 id="21-definition-and-intuition">2.1 Definition and Intuition</h3>
+
+<p>The idea behind PRR is simple:</p>
+
+<blockquote>
+  <p>If the uncertainty estimate is reliable, then rejecting high-uncertainty predictions should quickly improve the average quality of the remaining (accepted) answers.</p>
+</blockquote>
+
+<p>Thus, PRR quantifies <strong>how efficiently model quality improves</strong> as low-confidence answers are removed.</p>
+
+<hr />
+
+<h3 id="22-step-1-build-the-prediction-rejection-pr-curve">2.2 Step 1: Build the Prediction Rejection (PR) Curve</h3>
+
+<p>For a given dataset ${x_i, y_i}_{i=1}^N$ and their generated responses $f(x_i)$:</p>
+
+<ol>
+  <li>Compute the <strong>uncertainty score</strong> $U_i = U(f(x_i))$ for each response.</li>
+  <li>Compute a <strong>quality score</strong> $Q(f(x_i), x_i, y_i)$, where<br />
+$Q = 1$ means a perfect match with the ground truth (e.g., by LLMScore or semantic similarity).</li>
+  <li>Sort all responses by <strong>descending uncertainty</strong> and progressively reject them.</li>
+  <li>At each rejection rate $r \in [0, 1]$, calculate the <strong>average quality</strong> of the remaining accepted predictions.</li>
+</ol>
+
+<p>Plot this as the <strong>Prediction Rejection (PR) Curve</strong>, where:</p>
+
+<ul>
+  <li>The $x$-axis represents the <strong>rejection rate</strong> (fraction of most uncertain samples removed).</li>
+  <li>The $y$-axis represents the <strong>average answer quality</strong> among the remaining predictions.</li>
+</ul>
+
+<hr />
+
+<h3 id="23-step-2-compute-the-area-under-the-pr-curve-aucpr">2.3 Step 2: Compute the Area Under the PR Curve (AUCPR)</h3>
+
+<p>Let $A_{\text{UE}}$ denote the area under the PR curve for a given UE method.</p>
+
+\[A_{\text{UE}} = \int_0^1 Q_r \, dr,\]
+
+<p>where $Q_r$ is the average quality at rejection rate $r$.</p>
+
+<p>This area captures <strong>how much improvement in quality</strong> can be achieved through rejection guided by the UE method.</p>
+
+<hr />
+
+<h3 id="24-step-3-compare-with-oracle-and-random-baselines">2.4 Step 3: Compare with Oracle and Random Baselines</h3>
+
+<p>To interpret this area meaningfully, two reference curves are defined:</p>
+
+<ul>
+  <li><strong>Oracle Curve</strong> ($A_{\text{oracle}}$): Rejects predictions in the <em>perfect</em> order (from worst to best quality).</li>
+  <li><strong>Random Curve</strong> ($A_{\text{random}}$): Rejects predictions in a completely random order.</li>
+</ul>
+
+<p>The <em>ideal</em> uncertainty estimator would behave like the oracle — always rejecting low-quality answers first.</p>
+
+<hr />
+
+<h3 id="25-step-4-compute-the-prediction-rejection-ratio-prr">2.5 Step 4: Compute the Prediction Rejection Ratio (PRR)</h3>
+
+<p>The <strong>Prediction Rejection Ratio</strong> measures how close a UE method is to the oracle.<br />
+It normalizes the area between the UE curve and the random curve by the area between the oracle and random curves:</p>
+
+\[\text{PRR} =
+\frac{
+A_{\text{UE}} - A_{\text{random}}
+}{
+A_{\text{oracle}} - A_{\text{random}}
+}.\]
+
+<p>Here:</p>
+<ul>
+  <li>$A_{\text{UE}}$: area under the UE method’s PR curve</li>
+  <li>$A_{\text{oracle}}$: area under the oracle curve</li>
+  <li>$A_{\text{random}}$: area under the random curve (baseline)</li>
+</ul>
+
+<hr />
+
+<h3 id="26-interpretation">2.6 Interpretation</h3>
+
+<ul>
+  <li>$\text{PRR} \approx 1$:<br />
+The UE method performs nearly as well as the oracle — it <strong>perfectly identifies unreliable predictions</strong>.</li>
+  <li>$\text{PRR} \approx 0$:<br />
+The UE method behaves no better than random guessing.</li>
+  <li>$\text{PRR} &lt; 0$:<br />
+The method is <strong>misleading</strong> — high uncertainty corresponds to <em>better</em> answers, indicating an inverted correlation.</li>
+</ul>
+
+<hr />
+
+<h2 id="3-why-prr-is-superior-to-simpler-metrics">3. Why PRR is Superior to Simpler Metrics</h2>
+
+<p>While traditional metrics like <strong>AUROC</strong> or <strong>AUPRC</strong> measure general discriminative ability, PRR has several key advantages for LLMs:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Metric</th>
+      <th style="text-align: left">Focus</th>
+      <th style="text-align: left">Limitation</th>
+      <th style="text-align: left">Advantage of PRR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>AUROC</strong></td>
+      <td style="text-align: left">Distinguishes correct vs. incorrect</td>
+      <td style="text-align: left">Does not measure <em>utility</em> of rejection</td>
+      <td style="text-align: left">PRR reflects actual <em>quality improvement</em> after rejection</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>ECE / Brier Score</strong></td>
+      <td style="text-align: left">Calibration of probabilities</td>
+      <td style="text-align: left">Requires probabilistic confidence, not always available</td>
+      <td style="text-align: left">PRR uses any form of uncertainty score</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>PRR</strong></td>
+      <td style="text-align: left">Measures <em>utility</em> of UE for filtering outputs</td>
+      <td style="text-align: left">—</td>
+      <td style="text-align: left">Directly connects uncertainty to decision-making</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Thus, PRR is not just a diagnostic metric but a <strong>deployment-oriented tool</strong> — it tells us <em>how much better the system becomes</em> when we reject uncertain outputs.</p>
+
+<hr />
+
+<h2 id="4-practical-example">4. Practical Example</h2>
+
+<p>Suppose we have 100 model outputs, each with:</p>
+<ul>
+  <li>A quality score $Q_i$ (between 0 and 1)</li>
+  <li>An uncertainty estimate $U_i$</li>
+</ul>
+
+<p>We sort them by $U_i$ (highest to lowest) and compute $Q_r$ at each rejection rate $r$.<br />
+Then, we calculate the areas:</p>
+
+\[A_{\text{UE}} = 0.76, \quad
+A_{\text{random}} = 0.50, \quad
+A_{\text{oracle}} = 0.90.\]
+
+<p>Finally,</p>
+
+\[\text{PRR} = 
+\frac{0.76 - 0.50}{0.90 - 0.50} = 0.65.\]
+
+<p>This means the UE method achieves <strong>65% of the optimal rejection performance</strong> — a strong but imperfect estimator.</p>
+
+<hr />
+
+<h2 id="5-interpreting-prr-in-practice">5. Interpreting PRR in Practice</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">PRR Value</th>
+      <th style="text-align: left">Interpretation</th>
+      <th style="text-align: left">Reliability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>0.9–1.0</strong></td>
+      <td style="text-align: left">Nearly optimal</td>
+      <td style="text-align: left">Excellent — highly reliable UE</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>0.6–0.8</strong></td>
+      <td style="text-align: left">Strong correlation</td>
+      <td style="text-align: left">Good, practical for filtering</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>0.3–0.5</strong></td>
+      <td style="text-align: left">Weak discrimination</td>
+      <td style="text-align: left">Needs refinement</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>&lt; 0.3</strong></td>
+      <td style="text-align: left">Poor or misleading</td>
+      <td style="text-align: left">Unreliable uncertainty scores</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="6-summary">6. Summary</h2>
+
+<p>The <strong>Prediction Rejection Ratio (PRR)</strong> provides a robust and interpretable way to evaluate Uncertainty Estimation methods for LLMs.</p>
+
+<ul>
+  <li>It connects <strong>uncertainty</strong> to <strong>answer quality</strong>, not just correctness.</li>
+  <li>It quantifies <strong>practical utility</strong> — how much uncertainty helps in real decision-making.</li>
+  <li>It enables <strong>fair comparison</strong> among UE methods and models.</li>
+</ul>
+
+<p>In short:</p>
+
+<blockquote>
+  <p>A good uncertainty estimator doesn’t just say <em>“I’m unsure”</em> —<br />
+it says it at the <strong>right time</strong>, and PRR tells us how well it does that.</p>
+</blockquote>
+
+    </article>
+    <a class="back-link" href="/blog/">← Back to blog</a>
+    <br>
+    <a class="back-link" href="/index.html">← Back to home</a>
+  </main>
+</body>
+</html>
