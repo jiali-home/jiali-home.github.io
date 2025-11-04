@@ -209,6 +209,16 @@ article {
 #news-list .news-date { display: inline; margin-right: 6px; font-weight: 500; }
 #news-list a { display: inline; }
 
+/* News ticker (vertical auto-scroll) */
+#news-list .news-ticker {
+  max-height: 160px; /* visible area */
+  overflow-y: auto;
+  position: relative;
+}
+#news-list .news-ticker.no-scroll { max-height: none; }
+#news-list .news-track { display: flex; flex-direction: column; gap: 6px; }
+#news-list .news-row { margin: 0; }
+
 .icon-box {
   position: relative;
   background: var(--border-gradient-onyx);

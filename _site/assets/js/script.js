@@ -202,15 +202,34 @@ function createLinkHTML(text, links) {
 }
 
 function renderNews(items) {
-  const container = document.getElementById('news-list');
-  if (!container || !Array.isArray(items)) return;
+  const host = document.getElementById('news-list');
+  if (!host || !Array.isArray(items)) return;
+
   // Sort by date desc (YYYY-MM)
   items.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
-  container.innerHTML = items.map(item => {
+
+  // Build scrollable container (manual user scroll)
+  const ticker = document.createElement('div');
+  ticker.className = 'news-ticker has-scrollbar';
+
+  const track = document.createElement('div');
+  track.className = 'news-track';
+
+  const rows = items.map(item => {
     const html = createLinkHTML(item.text, item.links);
-    // Each news in one line: date + text inline
-    return `<p><span class="news-date">${item.date}:</span> ${html}</p>`;
+    return `<p class="news-row"><span class="news-date">${item.date}:</span> ${html}</p>`;
   }).join('\n');
+  track.innerHTML = rows;
+
+  ticker.appendChild(track);
+  host.innerHTML = '';
+  host.appendChild(ticker);
+
+  // If not overflowing, remove max-height so it displays fully
+  requestAnimationFrame(() => {
+    const overflows = track.scrollHeight > ticker.clientHeight + 1;
+    if (!overflows) ticker.classList.add('no-scroll');
+  });
 }
 
 function escapeHTML(s) {

@@ -43,3 +43,7 @@ Markdown Blog (Jekyll on GitHub Pages)
 - Blog index is at `/blog/` and lists all posts; each post renders with `_layouts/post.html` using site CSS.
 - No build step required locally — GitHub Pages auto-builds Jekyll when you push.
 - Nav: Clicking "Blog" on the home page routes to `/blog/`.
+
+
+### Preview
+`bundle exec jekyll serve --livereload`
