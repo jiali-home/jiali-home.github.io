@@ -1,5 +1,32 @@
 [
   {
+    "title": "ECOGaze: Efficient Causal Online Egocentric Gaze Estimation",
+    "tag": "Under Review",
+    "authors": ["Jia Li", "Wenjie Zhao", "Fnu Atisri", "Sanskriti Aripineni", "Shijian Deng", "Yapeng Tian"],
+    "image": "./assets/images/eco_gaze.png",
+    "description": "ECOGaze is a causal online egocentric gaze estimation framework that achieves real-time performance and high accuracy.",
+    "link": "#",
+    "date": "2025-11"
+  },
+  {
+    "title": "Toward Gaze Target Detection in Young Autistic Children",
+    "tag": "AAAI 2026 AISI Track",
+    "authors": ["Shijian Deng, Erin E. Kosloski, Siva Sai Nagender Vasireddy, Jia Li, Randi Sierra Sherwood, Feroz Mohamed Hatha, Siddhi Patel, Pamela R. Rollins, Yapeng Tian"],
+    "image": "./assets/images/autism_gaze.png",
+    "description": "We present a dataset and a llm-based model for gaze target detection in young autistic children, aiming to advance the development of early intervention and diagnosis for autism spectrum disorder.",
+    "link": "#",
+    "date": "2025-11"
+  },
+  {
+    "title": "Do Audio-Visual Segmentation Models Truly Segment Sounding Objects?",
+    "tag": "AAAI 2026 Main Track",
+    "authors": ["Jia Li", "Wenjie Zhao", "Ziru Huang", "Yunhui Guo", "Yapeng Tian"],
+    "image": "./assets/images/robust-avs.png",
+    "description": "“AVSBench-Robust,” a comprehensive benchmark and framework addressing visual bias in audio-visual segmentation.",
+    "link": "https://arxiv.org/abs/2502.00358",
+    "date": "2025-11"
+  },
+  {
     "title": "From Waveforms to Pixels: A Survey on Audio-Visual Segmentation",
     "tag": "Preprint",
     "authors": ["Jia Li", "Yapeng Tian"],
@@ -7,15 +34,6 @@
     "description": "A comprehensive survey on audio-visual segmentation, covering various methods, datasets, and future directions.",
     "link": "https://arxiv.org/abs/2508.03724",
     "date": "2025-07"
-  },
-  {
-    "title": "Do Audio-Visual Segmentation Models Truly Segment Sounding Objects?",
-    "tag": "[AAAI 2026 Main Track]",
-    "authors": ["Jia Li", "Wenjie Zhao", "Ziru Huang", "Yunhui Guo", "Yapeng Tian"],
-    "image": "./assets/images/robust-avs.png",
-    "description": "“AVSBench-Robust,” a comprehensive benchmark and framework addressing visual bias in audio-visual segmentation.",
-    "link": "https://arxiv.org/abs/2502.00358",
-    "date": "2024-10"
   },
   {
     "title": "Robust Open-Set Test-Time Adaptation",
