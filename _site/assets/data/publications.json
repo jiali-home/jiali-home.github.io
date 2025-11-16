@@ -10,7 +10,7 @@
   },
   {
     "title": "Do Audio-Visual Segmentation Models Truly Segment Sounding Objects?",
-    "tag": "Under Review",
+    "tag": "[AAAI 2026 Main Track]",
     "authors": ["Jia Li", "Wenjie Zhao", "Ziru Huang", "Yunhui Guo", "Yapeng Tian"],
     "image": "./assets/images/robust-avs.png",
     "description": "“AVSBench-Robust,” a comprehensive benchmark and framework addressing visual bias in audio-visual segmentation.",
