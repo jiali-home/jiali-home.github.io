@@ -147,7 +147,7 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
     // If user clicks "Resume", open the PDF in a new tab
     if (label === "resume") {
-      window.open("./assets/Resume_Jia_Li.pdf", "_blank", "noopener");
+      window.open("./assets/Resume_Jia_Li_dec2025.pdf", "_blank", "noopener");
       return;
     }
 
