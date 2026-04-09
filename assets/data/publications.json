@@ -1,5 +1,22 @@
 [
   {
+    "title": "MVX-Bench: A Multi-Video Cross-Dimension Benchmark for Multi-Video Understanding",
+    "tag": "Preprint",
+    "authors": [
+      "Yue Zhang",
+      "Liqiang Jing",
+      "Jia Li",
+      "Yapeng Tian",
+      "Xinya Du",
+      "Yunhui Guo",
+      "Vibhav Giridhar Gogate"
+    ],
+    "image": "./assets/images/mvx_benchmark_donut.png",
+    "description": "MVX-Bench reformulates 11 classical computer vision tasks into a unified multi-video QA benchmark, and SAMA introduces skill-augmented agentic reasoning with conflict-aware verification for structured cross-video understanding.",
+    "link": "https://arxiv.org/abs/2603.14733",
+    "date": "2026-04"
+  },
+  {
     "title": "ARGaze: Autoregressive Transformers for Online Egocentric Gaze Estimation",
     "tag": "arXiv 2026",
     "authors": [
