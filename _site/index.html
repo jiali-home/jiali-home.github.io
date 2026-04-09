@@ -176,10 +176,6 @@
             <button class="navbar-link" data-nav-link>Resume</button>
           </li>
 
-          <li class="navbar-item">
-            <button class="navbar-link" data-nav-link>Blog</button>
-          </li>
-
         </ul>
 
       </nav>
@@ -233,18 +229,21 @@
         <div class="research-theme-grid">
           <button class="research-theme-card active" type="button" data-pubs-theme-btn data-theme="perception">
             <span class="research-theme-kicker">A</span>
+            <span class="research-theme-label">Track A</span>
             <h3 class="research-theme-title">Multimodal Perception &amp; Robustness</h3>
             <p class="research-theme-summary">Robust audio-visual perception, out-of-distribution understanding, and reliable multimodal systems under real-world shifts.</p>
           </button>
 
           <button class="research-theme-card" type="button" data-pubs-theme-btn data-theme="reasoning">
             <span class="research-theme-kicker">B</span>
+            <span class="research-theme-label">Track B</span>
             <h3 class="research-theme-title">Agentic Multimodal Reasoning</h3>
             <p class="research-theme-summary">LLM-integrated reasoning over visual and multimodal evidence with tool use, verification, and structured decision-making.</p>
           </button>
 
           <button class="research-theme-card" type="button" data-pubs-theme-btn data-theme="applications">
             <span class="research-theme-kicker">C</span>
+            <span class="research-theme-label">Track C</span>
             <h3 class="research-theme-title">Egocentric &amp; Real-World AI Applications</h3>
             <p class="research-theme-summary">Causal egocentric perception and assistive multimodal AI designed for deployment, accessibility, and human-centered impact.</p>
           </button>
@@ -264,6 +263,12 @@
           </div>
         </div>
 
+        <div class="research-active-banner" data-theme-banner>
+          <p class="research-active-kicker" data-theme-kicker>Track A</p>
+          <h3 class="research-active-title" data-theme-title>Multimodal Perception &amp; Robustness</h3>
+          <p class="research-active-subtitle">Selected publications under this theme</p>
+        </div>
+
         <div class="blog-posts">
           <ul class="blog-posts-list" data-pubs-list>
             <!-- Publications will be injected by script.js from assets/data/publications.json -->
@@ -281,49 +286,8 @@
         <h2 class="h2 article-title">Projects</h2>
       </header>
       <section class="blog-posts">
-        <ul class="blog-posts-list">
-
-          <li class="blog-post-item">
-            <a href="#">
-              <figure class="blog-banner-box">
-                <img src="./assets/images/NPSS.svg" alt="NPSS" loading="lazy">
-              </figure>
-              <div class="blog-content">
-                <h3 class="h3 blog-item-title">[IAPRR Project]HAYSTAC</h3>
-                <div class="blog-meta">
-                  <p class="blog-category"></p>
-                  <!-- <span class="dot"></span> -->
-                  <!-- <time datetime="2022-02-23"></time> -->
-                </div>
-                <p class="blog-text">
-                  Systematically detects and validates trajectory anomalies through
-                  five integrated components: trip-level feature extraction, anomaly detectors, two-stage empirical calibration,
-                  nonparametric statistical scanning (NPSS), and final empirical calibration
-                </p>
-              </div>
-            </a>
-          </li>
-
-
-          <li class="blog-post-item">
-            <a href="#">
-              <figure class="blog-banner-box">
-                <img src="./assets/images/EMO2.png" alt="EMO" loading="lazy">
-              </figure>
-              <div class="blog-content">
-                <h3 class="h3 blog-item-title">[Project]EMO: Emotional Modulation and Optimization for Conversational AI</h3>
-                <div class="blog-meta">
-                  <p class="blog-category"></p>
-                  <!-- <span class="dot"></span> -->
-                  <!-- <time datetime="2022-02-23"></time> -->
-                </div>
-                <p class="blog-text">
-                  To develop EMO, we introduced a modular framework using emotional principal component vectors to manipulate hidden states, enabling precise emotional control.
-                </p>
-              </div>
-            </a>
-          </li>
-
+        <ul class="blog-posts-list" id="projects-list">
+          <!-- Projects will be injected by script.js from assets/data/projects.json -->
         </ul>
       </section>
 
@@ -796,18 +760,21 @@
           <div class="research-theme-grid">
             <button class="research-theme-card active" type="button" data-pubs-theme-btn data-theme="perception">
               <span class="research-theme-kicker">A</span>
+              <span class="research-theme-label">Track A</span>
               <h3 class="research-theme-title">Multimodal Perception &amp; Robustness</h3>
               <p class="research-theme-summary">Robust audio-visual perception, out-of-distribution understanding, and reliable multimodal systems under real-world shifts.</p>
             </button>
 
             <button class="research-theme-card" type="button" data-pubs-theme-btn data-theme="reasoning">
               <span class="research-theme-kicker">B</span>
+              <span class="research-theme-label">Track B</span>
               <h3 class="research-theme-title">Agentic Multimodal Reasoning</h3>
               <p class="research-theme-summary">LLM-integrated reasoning over visual and multimodal evidence with tool use, verification, and structured decision-making.</p>
             </button>
 
             <button class="research-theme-card" type="button" data-pubs-theme-btn data-theme="applications">
               <span class="research-theme-kicker">C</span>
+              <span class="research-theme-label">Track C</span>
               <h3 class="research-theme-title">Egocentric &amp; Real-World AI Applications</h3>
               <p class="research-theme-summary">Causal egocentric perception and assistive multimodal AI designed for deployment, accessibility, and human-centered impact.</p>
             </button>
@@ -825,6 +792,12 @@
             <div class="research-theme-copy" data-theme-panel="applications">
               <p>Theme C grounds the agenda in egocentric and real-world AI applications, especially online gaze understanding, assistive computing, and multimodal systems that must operate causally and efficiently in deployment settings.</p>
             </div>
+          </div>
+
+          <div class="research-active-banner" data-theme-banner>
+            <p class="research-active-kicker" data-theme-kicker>Track A</p>
+            <h3 class="research-active-title" data-theme-title>Multimodal Perception &amp; Robustness</h3>
+            <p class="research-active-subtitle">Selected publications under this theme</p>
           </div>
 
           <div class="blog-posts">

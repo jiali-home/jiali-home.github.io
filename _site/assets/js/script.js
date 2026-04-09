@@ -151,12 +151,6 @@ for (let i = 0; i < navigationLinks.length; i++) {
       return;
     }
 
-    // If user clicks "Blog", go to Jekyll blog index
-    if (label === "blog") {
-      window.location.href = "./blog/";
-      return;
-    }
-
     // Switch visible page based on label
     for (let j = 0; j < pages.length; j++) {
       if (label === pages[j].dataset.page) {
@@ -276,6 +270,9 @@ function renderPublications(items) {
     const list = module.querySelector('[data-pubs-list]');
     const buttons = module.querySelectorAll('[data-pubs-theme-btn]');
     const panels = module.querySelectorAll('[data-theme-panel]');
+    const banner = module.querySelector('[data-theme-banner]');
+    const bannerKicker = module.querySelector('[data-theme-kicker]');
+    const bannerTitle = module.querySelector('[data-theme-title]');
     if (!list || !buttons.length) return;
 
     let activeTheme = module.dataset.defaultTheme || buttons[0].dataset.theme;
@@ -288,6 +285,19 @@ function renderPublications(items) {
       panels.forEach(panel => {
         panel.classList.toggle('active', panel.dataset.themePanel === activeTheme);
       });
+
+      const activeButton = module.querySelector(`[data-pubs-theme-btn][data-theme="${activeTheme}"]`);
+      if (banner && activeButton) {
+        banner.dataset.theme = activeTheme;
+        if (bannerKicker) {
+          const label = activeButton.querySelector('.research-theme-label');
+          bannerKicker.textContent = label ? label.textContent : '';
+        }
+        if (bannerTitle) {
+          const titleNode = activeButton.querySelector('.research-theme-title');
+          bannerTitle.textContent = titleNode ? titleNode.textContent : '';
+        }
+      }
 
       const filtered = sortedItems.filter(item => (item.theme || 'perception') === activeTheme);
       list.innerHTML = filtered.map(publicationCardHTML).join('\n');
@@ -304,6 +314,50 @@ function renderPublications(items) {
   });
 }
 
+function renderProjects(items) {
+  const list = document.getElementById('projects-list');
+  if (!list || !Array.isArray(items)) return;
+
+  const liHTML = items.map(project => {
+    const title = escapeHTML(project.title || '');
+    const tag = project.tag ? `[${escapeHTML(project.tag)}]` : '';
+    const description = escapeHTML(project.description || '');
+    const image = project.image || '';
+    const link = project.link || '#';
+    const alt = title;
+    const extraLinks = Array.isArray(project.links) ? project.links : [];
+    const linkRow = extraLinks.length ? `
+              <div class="blog-link-row">
+                ${extraLinks.map(item => {
+                  const label = escapeHTML(item.label || 'Link');
+                  const url = item.url || '#';
+                  const externalAttrs = item.external ? ' target="_blank" rel="noopener"' : '';
+                  return `<a href="${url}"${externalAttrs}>${label}</a>`;
+                }).join('\n')}
+              </div>` : '';
+
+    return `
+      <li class="blog-post-item">
+        <div class="blog-post-card">
+          <a href="${link}">
+            <figure class="blog-banner-box">
+              <img src="${image}" alt="${alt}" loading="lazy">
+            </figure>
+            <div class="blog-content">
+              <h3 class="h3 blog-item-title">${tag ? `${tag} ` : ''}${title}</h3>
+              <div class="blog-meta">
+                <p class="blog-category"></p>
+              </div>
+              <p class="blog-text">${description}</p>
+            </div>
+          </a>${linkRow}
+        </div>
+      </li>`;
+  }).join('\n');
+
+  list.innerHTML = liHTML;
+}
+
 (async function initDynamicSections() {
   // News
   const news = await fetchJSON('./assets/data/news.json');
@@ -312,6 +366,10 @@ function renderPublications(items) {
   // Publications
   const pubs = await fetchJSON('./assets/data/publications.json');
   if (pubs) renderPublications(pubs);
+
+  // Projects
+  const projects = await fetchJSON('./assets/data/projects.json');
+  if (projects) renderProjects(projects);
   
   // Blog
   const blog = await fetchJSON('./assets/data/blog.json');

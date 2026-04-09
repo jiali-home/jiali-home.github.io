@@ -1149,11 +1149,47 @@ main {
 
 .blog-post-item > a:hover .blog-item-title { color: var(--orange-yellow-crayola); }
 
+.blog-post-card {
+  position: relative;
+  background: var(--border-gradient-onyx);
+  height: 100%;
+  box-shadow: var(--shadow-4);
+  border-radius: 16px;
+  z-index: 1;
+}
+
+.blog-post-card::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  background: var(--eerie-black-1);
+  z-index: -1;
+}
+
+.blog-post-card > a {
+  display: block;
+  height: calc(100% - 44px);
+}
+
+.blog-post-card > a:hover .blog-item-title { color: var(--orange-yellow-crayola); }
+
 .blog-text {
   color: var(--light-gray);
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
   line-height: 1.6;
+}
+
+.blog-link-row {
+  display: flex;
+  gap: 14px;
+  padding: 0 15px 16px;
+}
+
+.blog-link-row a {
+  color: var(--orange-yellow-crayola);
+  font-size: var(--fs-6);
 }
 
 .research-overview {
@@ -1173,22 +1209,32 @@ main {
 }
 
 .research-theme-card {
+  --theme-accent: #d0a85c;
   width: 100%;
   text-align: left;
   padding: 18px;
   border-radius: 18px;
-  border: 1px solid var(--jet);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
+  border: 1px solid color-mix(in srgb, var(--theme-accent) 40%, var(--jet));
+  border-top-width: 4px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--theme-accent) 18%, transparent), rgba(255, 255, 255, 0.01)),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01));
   color: var(--light-gray);
   transition: var(--transition-1);
 }
 
 .research-theme-card:hover,
 .research-theme-card.active {
-  border-color: var(--orange-yellow-crayola);
+  border-color: var(--theme-accent);
   transform: translateY(-2px);
   box-shadow: var(--shadow-4);
 }
+
+.research-theme-card[data-theme="perception"] { --theme-accent: #49b8a5; }
+
+.research-theme-card[data-theme="reasoning"] { --theme-accent: #4d88ff; }
+
+.research-theme-card[data-theme="applications"] { --theme-accent: #e0893f; }
 
 .research-theme-kicker {
   display: inline-flex;
@@ -1196,12 +1242,22 @@ main {
   justify-content: center;
   width: 32px;
   height: 32px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   border-radius: 50%;
-  background: var(--vegas-gold);
+  background: var(--theme-accent);
   color: var(--smoky-black);
   font-size: var(--fs-6);
   font-weight: var(--fw-600);
+}
+
+.research-theme-label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--theme-accent);
+  font-size: 11px;
+  font-weight: var(--fw-600);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .research-theme-title {
@@ -1231,6 +1287,40 @@ main {
 }
 
 .research-theme-copy.active { display: block; }
+
+.research-active-banner {
+  --banner-accent: #d0a85c;
+  border-left: 5px solid var(--banner-accent);
+  border-radius: 16px;
+  padding: 18px 18px 18px 20px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--banner-accent) 18%, transparent), rgba(255, 255, 255, 0.02));
+}
+
+.research-active-banner[data-theme="perception"] { --banner-accent: #49b8a5; }
+
+.research-active-banner[data-theme="reasoning"] { --banner-accent: #4d88ff; }
+
+.research-active-banner[data-theme="applications"] { --banner-accent: #e0893f; }
+
+.research-active-kicker {
+  margin-bottom: 6px;
+  color: var(--banner-accent);
+  font-size: 11px;
+  font-weight: var(--fw-600);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.research-active-title {
+  color: var(--white-2);
+  font-size: var(--fs-2);
+  margin-bottom: 6px;
+}
+
+.research-active-subtitle {
+  color: var(--light-gray-70);
+  font-size: var(--fs-6);
+}
 
 
 

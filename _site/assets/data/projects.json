@@ -1,0 +1,28 @@
+[
+  {
+    "title": "HAYSTAC",
+    "tag": "IAPRR Project",
+    "image": "./assets/images/NPSS.svg",
+    "description": "Systematically detects and validates trajectory anomalies through five integrated components: trip-level feature extraction, anomaly detectors, two-stage empirical calibration, nonparametric statistical scanning, and final empirical calibration.",
+    "link": "#",
+    "links": []
+  },
+  {
+    "title": "EMO: Emotional Modulation and Optimization for Conversational AI",
+    "tag": "Project",
+    "image": "./assets/images/EMO2.png",
+    "description": "A modular framework using emotional principal component vectors to manipulate hidden states, enabling precise emotional control for conversational AI.",
+    "link": "./assets/papers/emo-chat-bot.pdf",
+    "links": [
+      {
+        "label": "Code",
+        "url": "https://github.com/KaiyuHe998/LLM-decorator-an-interesting-friend",
+        "external": true
+      },
+      {
+        "label": "PDF",
+        "url": "./assets/papers/emo-chat-bot.pdf"
+      }
+    ]
+  }
+]
