@@ -267,50 +267,35 @@ function renderPublications(items) {
   const sortedItems = [...items].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
 
   modules.forEach(module => {
-    const list = module.querySelector('[data-pubs-list]');
+    const themeItems = module.querySelectorAll('[data-theme-item]');
     const buttons = module.querySelectorAll('[data-pubs-theme-btn]');
-    const panels = module.querySelectorAll('[data-theme-panel]');
-    const banner = module.querySelector('[data-theme-banner]');
-    const bannerKicker = module.querySelector('[data-theme-kicker]');
-    const bannerTitle = module.querySelector('[data-theme-title]');
-    if (!list || !buttons.length) return;
+    if (!themeItems.length || !buttons.length) return;
 
-    let activeTheme = module.dataset.defaultTheme || buttons[0].dataset.theme;
-
-    const paint = () => {
-      buttons.forEach(button => {
-        button.classList.toggle('active', button.dataset.theme === activeTheme);
-      });
-
-      panels.forEach(panel => {
-        panel.classList.toggle('active', panel.dataset.themePanel === activeTheme);
-      });
-
-      const activeButton = module.querySelector(`[data-pubs-theme-btn][data-theme="${activeTheme}"]`);
-      if (banner && activeButton) {
-        banner.dataset.theme = activeTheme;
-        if (bannerKicker) {
-          const label = activeButton.querySelector('.research-theme-label');
-          bannerKicker.textContent = label ? label.textContent : '';
-        }
-        if (bannerTitle) {
-          const titleNode = activeButton.querySelector('.research-theme-title');
-          bannerTitle.textContent = titleNode ? titleNode.textContent : '';
-        }
-      }
-
-      const filtered = sortedItems.filter(item => (item.theme || 'perception') === activeTheme);
+    themeItems.forEach(item => {
+      const theme = item.dataset.theme || 'perception';
+      const list = item.querySelector('[data-pubs-list]');
+      if (!list) return;
+      const filtered = sortedItems.filter(entry => (entry.theme || 'perception') === theme);
       list.innerHTML = filtered.map(publicationCardHTML).join('\n');
-    };
+    });
 
     buttons.forEach(button => {
       button.addEventListener('click', function () {
-        activeTheme = this.dataset.theme;
-        paint();
+        const selectedTheme = this.dataset.theme;
+        const selectedItem = module.querySelector(`[data-theme-item][data-theme="${selectedTheme}"]`);
+        const shouldOpen = selectedItem && !selectedItem.classList.contains('active');
+
+        themeItems.forEach(item => {
+          const isActive = shouldOpen && item.dataset.theme === selectedTheme;
+          item.classList.toggle('active', isActive);
+          const itemButton = item.querySelector('[data-pubs-theme-btn]');
+          if (itemButton) {
+            itemButton.classList.toggle('active', isActive);
+            itemButton.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+          }
+        });
       });
     });
-
-    paint();
   });
 }
 

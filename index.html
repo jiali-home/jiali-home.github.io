@@ -226,53 +226,66 @@
           Building robust and agentic multimodal AI systems for real-world understanding and assistance.
         </p>
 
-        <div class="research-theme-grid">
-          <button class="research-theme-card active" type="button" data-pubs-theme-btn data-theme="perception">
-            <span class="research-theme-kicker">A</span>
-            <span class="research-theme-label">Track A</span>
-            <h3 class="research-theme-title">Multimodal Perception &amp; Robustness</h3>
-            <p class="research-theme-summary">Robust audio-visual perception, out-of-distribution understanding, and reliable multimodal systems under real-world shifts.</p>
-          </button>
+        <div class="research-accordion">
+          <section class="research-accordion-item" data-theme-item data-theme="perception">
+            <button class="research-theme-card" type="button" data-pubs-theme-btn data-theme="perception" aria-expanded="false">
+              <span class="research-theme-kicker">A</span>
+              <span class="research-theme-label">Track A</span>
+              <h3 class="research-theme-title">Multimodal Perception &amp; Robustness</h3>
+              <p class="research-theme-summary">Robust audio-visual perception, out-of-distribution understanding, and reliable multimodal systems under real-world shifts.</p>
+              <span class="research-theme-hint">Tap to open this research track</span>
+            </button>
+            <div class="research-drawer" data-theme-panel="perception">
+              <div class="research-theme-detail">
+                <p>Theme A centers on multimodal perception that remains stable under ambiguity, spurious cues, and distribution shift. This line spans robust audio-visual segmentation, open-set adaptation, and benchmark-driven reliability analysis.</p>
+              </div>
+              <div class="blog-posts">
+                <ul class="blog-posts-list" data-pubs-list data-theme-list="perception">
+                  <!-- Publications will be injected by script.js from assets/data/publications.json -->
+                </ul>
+              </div>
+            </div>
+          </section>
 
-          <button class="research-theme-card" type="button" data-pubs-theme-btn data-theme="reasoning">
-            <span class="research-theme-kicker">B</span>
-            <span class="research-theme-label">Track B</span>
-            <h3 class="research-theme-title">Agentic Multimodal Reasoning</h3>
-            <p class="research-theme-summary">LLM-integrated reasoning over visual and multimodal evidence with tool use, verification, and structured decision-making.</p>
-          </button>
+          <section class="research-accordion-item" data-theme-item data-theme="reasoning">
+            <button class="research-theme-card" type="button" data-pubs-theme-btn data-theme="reasoning" aria-expanded="false">
+              <span class="research-theme-kicker">B</span>
+              <span class="research-theme-label">Track B</span>
+              <h3 class="research-theme-title">Agentic Multimodal Reasoning</h3>
+              <p class="research-theme-summary">LLM-integrated reasoning over visual and multimodal evidence with tool use, verification, and structured decision-making.</p>
+              <span class="research-theme-hint">Tap to open this research track</span>
+            </button>
+            <div class="research-drawer" data-theme-panel="reasoning">
+              <div class="research-theme-detail">
+                <p>Theme B focuses on agentic multimodal reasoning: systems that do not just encode video, but iteratively reason over it using tools, skills, and verification. The goal is structured multimodal decision-making beyond one-shot inference.</p>
+              </div>
+              <div class="blog-posts">
+                <ul class="blog-posts-list" data-pubs-list data-theme-list="reasoning">
+                  <!-- Publications will be injected by script.js from assets/data/publications.json -->
+                </ul>
+              </div>
+            </div>
+          </section>
 
-          <button class="research-theme-card" type="button" data-pubs-theme-btn data-theme="applications">
-            <span class="research-theme-kicker">C</span>
-            <span class="research-theme-label">Track C</span>
-            <h3 class="research-theme-title">Egocentric &amp; Real-World AI Applications</h3>
-            <p class="research-theme-summary">Causal egocentric perception and assistive multimodal AI designed for deployment, accessibility, and human-centered impact.</p>
-          </button>
-        </div>
-
-        <div class="research-theme-detail">
-          <div class="research-theme-copy active" data-theme-panel="perception">
-            <p>Theme A centers on multimodal perception that remains stable under ambiguity, spurious cues, and distribution shift. This line spans robust audio-visual segmentation, open-set adaptation, and benchmark-driven reliability analysis.</p>
-          </div>
-
-          <div class="research-theme-copy" data-theme-panel="reasoning">
-            <p>Theme B focuses on agentic multimodal reasoning: systems that do not just encode video, but iteratively reason over it using tools, skills, and verification. The goal is structured multimodal decision-making beyond one-shot inference.</p>
-          </div>
-
-          <div class="research-theme-copy" data-theme-panel="applications">
-            <p>Theme C grounds the agenda in egocentric and real-world AI applications, especially online gaze understanding, assistive computing, and multimodal systems that must operate causally and efficiently in deployment settings.</p>
-          </div>
-        </div>
-
-        <div class="research-active-banner" data-theme-banner>
-          <p class="research-active-kicker" data-theme-kicker>Track A</p>
-          <h3 class="research-active-title" data-theme-title>Multimodal Perception &amp; Robustness</h3>
-          <p class="research-active-subtitle">Selected publications under this theme</p>
-        </div>
-
-        <div class="blog-posts">
-          <ul class="blog-posts-list" data-pubs-list>
-            <!-- Publications will be injected by script.js from assets/data/publications.json -->
-          </ul>
+          <section class="research-accordion-item" data-theme-item data-theme="applications">
+            <button class="research-theme-card" type="button" data-pubs-theme-btn data-theme="applications" aria-expanded="false">
+              <span class="research-theme-kicker">C</span>
+              <span class="research-theme-label">Track C</span>
+              <h3 class="research-theme-title">Egocentric &amp; Real-World AI Applications</h3>
+              <p class="research-theme-summary">Causal egocentric perception and assistive multimodal AI designed for deployment, accessibility, and human-centered impact.</p>
+              <span class="research-theme-hint">Tap to open this research track</span>
+            </button>
+            <div class="research-drawer" data-theme-panel="applications">
+              <div class="research-theme-detail">
+                <p>Theme C grounds the agenda in egocentric and real-world AI applications, especially online gaze understanding, assistive computing, and multimodal systems that must operate causally and efficiently in deployment settings.</p>
+              </div>
+              <div class="blog-posts">
+                <ul class="blog-posts-list" data-pubs-list data-theme-list="applications">
+                  <!-- Publications will be injected by script.js from assets/data/publications.json -->
+                </ul>
+              </div>
+            </div>
+          </section>
         </div>
       </section>
 
@@ -757,53 +770,66 @@
             Building robust and agentic multimodal AI systems for real-world understanding and assistance.
           </p>
 
-          <div class="research-theme-grid">
-            <button class="research-theme-card active" type="button" data-pubs-theme-btn data-theme="perception">
-              <span class="research-theme-kicker">A</span>
-              <span class="research-theme-label">Track A</span>
-              <h3 class="research-theme-title">Multimodal Perception &amp; Robustness</h3>
-              <p class="research-theme-summary">Robust audio-visual perception, out-of-distribution understanding, and reliable multimodal systems under real-world shifts.</p>
-            </button>
+          <div class="research-accordion">
+            <section class="research-accordion-item" data-theme-item data-theme="perception">
+              <button class="research-theme-card" type="button" data-pubs-theme-btn data-theme="perception" aria-expanded="false">
+                <span class="research-theme-kicker">A</span>
+                <span class="research-theme-label">Track A</span>
+                <h3 class="research-theme-title">Multimodal Perception &amp; Robustness</h3>
+                <p class="research-theme-summary">Robust audio-visual perception, out-of-distribution understanding, and reliable multimodal systems under real-world shifts.</p>
+                <span class="research-theme-hint">Tap to open this research track</span>
+              </button>
+              <div class="research-drawer" data-theme-panel="perception">
+                <div class="research-theme-detail">
+                  <p>Theme A centers on multimodal perception that remains stable under ambiguity, spurious cues, and distribution shift. This line spans robust audio-visual segmentation, open-set adaptation, and benchmark-driven reliability analysis.</p>
+                </div>
+                <div class="blog-posts">
+                  <ul class="blog-posts-list" data-pubs-list data-theme-list="perception">
+                    <!-- Publications will be injected by script.js from assets/data/publications.json -->
+                  </ul>
+                </div>
+              </div>
+            </section>
 
-            <button class="research-theme-card" type="button" data-pubs-theme-btn data-theme="reasoning">
-              <span class="research-theme-kicker">B</span>
-              <span class="research-theme-label">Track B</span>
-              <h3 class="research-theme-title">Agentic Multimodal Reasoning</h3>
-              <p class="research-theme-summary">LLM-integrated reasoning over visual and multimodal evidence with tool use, verification, and structured decision-making.</p>
-            </button>
+            <section class="research-accordion-item" data-theme-item data-theme="reasoning">
+              <button class="research-theme-card" type="button" data-pubs-theme-btn data-theme="reasoning" aria-expanded="false">
+                <span class="research-theme-kicker">B</span>
+                <span class="research-theme-label">Track B</span>
+                <h3 class="research-theme-title">Agentic Multimodal Reasoning</h3>
+                <p class="research-theme-summary">LLM-integrated reasoning over visual and multimodal evidence with tool use, verification, and structured decision-making.</p>
+                <span class="research-theme-hint">Tap to open this research track</span>
+              </button>
+              <div class="research-drawer" data-theme-panel="reasoning">
+                <div class="research-theme-detail">
+                  <p>Theme B focuses on agentic multimodal reasoning: systems that do not just encode video, but iteratively reason over it using tools, skills, and verification. The goal is structured multimodal decision-making beyond one-shot inference.</p>
+                </div>
+                <div class="blog-posts">
+                  <ul class="blog-posts-list" data-pubs-list data-theme-list="reasoning">
+                    <!-- Publications will be injected by script.js from assets/data/publications.json -->
+                  </ul>
+                </div>
+              </div>
+            </section>
 
-            <button class="research-theme-card" type="button" data-pubs-theme-btn data-theme="applications">
-              <span class="research-theme-kicker">C</span>
-              <span class="research-theme-label">Track C</span>
-              <h3 class="research-theme-title">Egocentric &amp; Real-World AI Applications</h3>
-              <p class="research-theme-summary">Causal egocentric perception and assistive multimodal AI designed for deployment, accessibility, and human-centered impact.</p>
-            </button>
-          </div>
-
-          <div class="research-theme-detail">
-            <div class="research-theme-copy active" data-theme-panel="perception">
-              <p>Theme A centers on multimodal perception that remains stable under ambiguity, spurious cues, and distribution shift. This line spans robust audio-visual segmentation, open-set adaptation, and benchmark-driven reliability analysis.</p>
-            </div>
-
-            <div class="research-theme-copy" data-theme-panel="reasoning">
-              <p>Theme B focuses on agentic multimodal reasoning: systems that do not just encode video, but iteratively reason over it using tools, skills, and verification. The goal is structured multimodal decision-making beyond one-shot inference.</p>
-            </div>
-
-            <div class="research-theme-copy" data-theme-panel="applications">
-              <p>Theme C grounds the agenda in egocentric and real-world AI applications, especially online gaze understanding, assistive computing, and multimodal systems that must operate causally and efficiently in deployment settings.</p>
-            </div>
-          </div>
-
-          <div class="research-active-banner" data-theme-banner>
-            <p class="research-active-kicker" data-theme-kicker>Track A</p>
-            <h3 class="research-active-title" data-theme-title>Multimodal Perception &amp; Robustness</h3>
-            <p class="research-active-subtitle">Selected publications under this theme</p>
-          </div>
-
-          <div class="blog-posts">
-            <ul class="blog-posts-list" data-pubs-list>
-              <!-- Publications will be injected by script.js from assets/data/publications.json -->
-            </ul>
+            <section class="research-accordion-item" data-theme-item data-theme="applications">
+              <button class="research-theme-card" type="button" data-pubs-theme-btn data-theme="applications" aria-expanded="false">
+                <span class="research-theme-kicker">C</span>
+                <span class="research-theme-label">Track C</span>
+                <h3 class="research-theme-title">Egocentric &amp; Real-World AI Applications</h3>
+                <p class="research-theme-summary">Causal egocentric perception and assistive multimodal AI designed for deployment, accessibility, and human-centered impact.</p>
+                <span class="research-theme-hint">Tap to open this research track</span>
+              </button>
+              <div class="research-drawer" data-theme-panel="applications">
+                <div class="research-theme-detail">
+                  <p>Theme C grounds the agenda in egocentric and real-world AI applications, especially online gaze understanding, assistive computing, and multimodal systems that must operate causally and efficiently in deployment settings.</p>
+                </div>
+                <div class="blog-posts">
+                  <ul class="blog-posts-list" data-pubs-list data-theme-list="applications">
+                    <!-- Publications will be injected by script.js from assets/data/publications.json -->
+                  </ul>
+                </div>
+              </div>
+            </section>
           </div>
         </section>
 
