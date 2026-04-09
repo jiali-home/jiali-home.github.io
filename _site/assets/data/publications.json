@@ -1,83 +1,176 @@
 [
   {
+    "title": "How Much Future Helps? A Controlled Study of Future-Privileged Supervision for Causal Egocentric Gaze Estimation",
+    "tag": "CVPR 2026 Gaze Workshop",
+    "authors": [
+      "Jia Li",
+      "Wenjie Zhao",
+      "Fnu Atisri",
+      "Sanskriti Aripineni",
+      "Shijian Deng",
+      "Jon E. Froehlich",
+      "Yuhang Zhao",
+      "Yapeng Tian"
+    ],
+    "image": "./assets/images/gaze_future.png",
+    "description": "We study how future context affects egocentric gaze estimation and introduce Future Privileged Distillation, enabling a strictly causal student model to learn from a future-aware teacher while remaining real-time at inference.",
+    "link": "#",
+    "date": "2026-04",
+    "theme": "applications"
+  },
+  {
     "title": "MVX-Bench: A Multi-Video Cross-Dimension Benchmark for Multi-Video Understanding",
     "tag": "Preprint",
-    "authors": ["Yue Zhang", "Liqiang Jing", "Jia Li", "Yapeng Tian", "Xinya Du", "Yunhui Guo", "Vibhav Giridhar Gogate"],
+    "authors": [
+      "Yue Zhang",
+      "Liqiang Jing",
+      "Jia Li",
+      "Yapeng Tian",
+      "Xinya Du",
+      "Yunhui Guo",
+      "Vibhav Giridhar Gogate"
+    ],
     "image": "./assets/images/mvx_benchmark_donut.png",
     "description": "MVX-Bench reformulates 11 classical computer vision tasks into a unified multi-video QA benchmark, and SAMA introduces skill-augmented agentic reasoning with conflict-aware verification for structured cross-video understanding.",
     "link": "https://arxiv.org/abs/2603.14733",
-    "date": "2026-04"
+    "date": "2026-04",
+    "theme": "reasoning"
   },
   {
-    "title": "ECOGaze: Efficient Causal Online Egocentric Gaze Estimation",
-    "tag": "Under Review",
-    "authors": ["Jia Li", "Wenjie Zhao", "Fnu Atisri", "Sanskriti Aripineni", "Shijian Deng", "Yapeng Tian"],
-    "image": "./assets/images/eco_gaze.png",
-    "description": "ECOGaze is a causal online egocentric gaze estimation framework that achieves real-time performance and high accuracy.",
-    "link": "#",
-    "date": "2025-11"
+    "title": "ARGaze: Autoregressive Transformers for Online Egocentric Gaze Estimation",
+    "tag": "arXiv 2026",
+    "authors": [
+      "Jia Li",
+      "Wenjie Zhao",
+      "Shijian Deng",
+      "Bolin Lai",
+      "Yuheng Wu",
+      "Ruijia Chen",
+      "Jon E. Froehlich",
+      "Yuhang Zhao",
+      "Yapeng Tian"
+    ],
+    "image": "./assets/images/ARGaze.png",
+    "description": "ARGaze reformulates online egocentric gaze estimation as causal autoregressive sequence prediction with a bounded gaze history window, enabling constant-memory streaming and faster inference with improved robustness.",
+    "link": "https://arxiv.org/abs/2602.05132",
+    "date": "2026-02",
+    "theme": "applications"
   },
   {
     "title": "Toward Gaze Target Detection in Young Autistic Children",
     "tag": "AAAI 2026 AISI Track",
-    "authors": ["Shijian Deng, Erin E. Kosloski, Siva Sai Nagender Vasireddy, Jia Li, Randi Sierra Sherwood, Feroz Mohamed Hatha, Siddhi Patel, Pamela R. Rollins, Yapeng Tian"],
+    "authors": [
+      "Shijian Deng",
+      "Erin E. Kosloski",
+      "Siva Sai Nagender Vasireddy",
+      "Jia Li",
+      "Randi Sierra Sherwood",
+      "Feroz Mohamed Hatha",
+      "Siddhi Patel",
+      "Pamela R. Rollins",
+      "Yapeng Tian"
+    ],
     "image": "./assets/images/autism_gaze.png",
     "description": "We present a dataset and a llm-based model for gaze target detection in young autistic children, aiming to advance the development of early intervention and diagnosis for autism spectrum disorder.",
     "link": "#",
-    "date": "2025-11"
+    "date": "2025-11",
+    "theme": "applications"
   },
   {
     "title": "Do Audio-Visual Segmentation Models Truly Segment Sounding Objects?",
     "tag": "AAAI 2026 Main Track",
-    "authors": ["Jia Li", "Wenjie Zhao", "Ziru Huang", "Yunhui Guo", "Yapeng Tian"],
+    "authors": [
+      "Jia Li",
+      "Wenjie Zhao",
+      "Ziru Huang",
+      "Yunhui Guo",
+      "Yapeng Tian"
+    ],
     "image": "./assets/images/robust-avs.png",
     "description": "“AVSBench-Robust,” a comprehensive benchmark and framework addressing visual bias in audio-visual segmentation.",
     "link": "https://arxiv.org/abs/2502.00358",
-    "date": "2025-11"
+    "date": "2025-11",
+    "theme": "perception"
   },
+
+  {
+    "title": "Segment Any Out-of-Distribution Object",
+    "tag": "CVPR 2024",
+    "authors": [
+      "Wenjie Zhao",
+      "Jia Li",
+      "Xin Dong",
+      "Yu Xiang",
+      "Yunhui Guo"
+    ],
+    "image": "./assets/images/s2m.png",
+    "description": "S2M transforms anomaly scores into direct segmentation prompts, improving accuracy and reducing mask fragmentation.",
+    "link": "https://arxiv.org/abs/2311.16516",
+    "date": "2024-02",
+    "theme": "perception"
+  },
+  
   {
     "title": "From Waveforms to Pixels: A Survey on Audio-Visual Segmentation",
     "tag": "Preprint",
-    "authors": ["Jia Li", "Yapeng Tian"],
+    "authors": [
+      "Jia Li",
+      "Yapeng Tian"
+    ],
     "image": "./assets/images/avs_survey_arch.png",
     "description": "A comprehensive survey on audio-visual segmentation, covering various methods, datasets, and future directions.",
     "link": "https://arxiv.org/abs/2508.03724",
-    "date": "2025-07"
+    "date": "2025-07",
+    "theme": "perception"
   },
   {
     "title": "Robust Open-Set Test-Time Adaptation",
     "tag": "Under Review",
-    "authors": ["Wenjie Zhao", "Jia Li", "Xin Dong", "Yapeng Tian", "Yu Xiang", "Yunhui Guo"],
+    "authors": [
+      "Wenjie Zhao",
+      "Jia Li",
+      "Xin Dong",
+      "Yapeng Tian",
+      "Yu Xiang",
+      "Yunhui Guo"
+    ],
     "image": "./assets/images/TTA_OOD.png",
     "description": "ROSETTA decouples csID classification and csOOD detection, enhancing OOD detection and maintaining ID accuracy in open-set TTA.",
     "link": "#",
-    "date": "2024-09"
+    "date": "2024-09",
+    "theme": "perception"
   },
-  {
-    "title": "Segment Any Out-of-Distribution Object",
-    "tag": "CVPR 2024",
-    "authors": ["Wenjie Zhao", "Jia Li", "Xin Dong", "Yu Xiang", "Yunhui Guo"],
-    "image": "./assets/images/s2m.png",
-    "description": "S2M transforms anomaly scores into direct segmentation prompts, improving accuracy and reducing mask fragmentation.",
-    "link": "https://arxiv.org/abs/2311.16516",
-    "date": "2024-02"
-  },
+
   {
     "title": "LLM Reliable",
     "tag": "KDD 2024 Workshop",
-    "authors": ["Kevin Wang", "Subre Moktar", "Jia Li", "Kangshuo Li", "Feng Chen"],
+    "authors": [
+      "Kevin Wang",
+      "Subre Moktar",
+      "Jia Li",
+      "Kangshuo Li",
+      "Feng Chen"
+    ],
     "image": "./assets/images/PTrue Case Study.svg",
     "description": "Measuring Aleatoric and Epistemic Uncertainty in LLMs: Empirical Evaluation on ID and OOD QA Tasks.",
     "link": "https://ai-activities.github.io/UDM-workshop-24/ap/",
-    "date": "2024-08"
+    "date": "2024-08",
+    "theme": "reasoning"
   },
   {
     "title": "AV-Mamba",
     "tag": "CVPR 2024 Workshop",
-    "authors": ["Ziru Huang", "Jia Li", "Wenjie Zhao", "Yunhui Guo", "Yapeng Tian"],
+    "authors": [
+      "Ziru Huang",
+      "Jia Li",
+      "Wenjie Zhao",
+      "Yunhui Guo",
+      "Yapeng Tian"
+    ],
     "image": "./assets/images/av_mamba.png",
     "description": "Cross-modality selective state space models for audio-visual question answering.",
     "link": "https://sightsound.org/papers/2024/Huang_AV-Mamba_Cross-Modality_Selective_State_Space_Models_for_Audio-Visual_Question_Answering.pdf",
-    "date": "2024-05"
+    "date": "2024-05",
+    "theme": "reasoning"
   }
 ]

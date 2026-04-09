@@ -239,23 +239,17 @@ function escapeHTML(s) {
     .replace(/>/g, '&gt;');
 }
 
-function renderPublications(items) {
-  const list = document.getElementById('pubs-list');
-  if (!list || !Array.isArray(items)) return;
-  // Sort by date desc
-  items.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
-  const liHTML = items.map(p => {
-    const authors = (p.authors || []).map(name => {
-      // Bold Jia Li in author list
-      return name === 'Jia Li' ? `<strong>${escapeHTML(name)}</strong>` : escapeHTML(name);
-    }).join(', ');
-    const title = escapeHTML(p.title || '');
-    const tag = p.tag ? `[${escapeHTML(p.tag)}]` : '';
-    const description = escapeHTML(p.description || '');
-    const image = p.image || '';
-    const link = p.link || '#';
-    const alt = title;
-    return `
+function publicationCardHTML(p) {
+  const authors = (p.authors || []).map(name => {
+    return name === 'Jia Li' ? `<strong>${escapeHTML(name)}</strong>` : escapeHTML(name);
+  }).join(', ');
+  const title = escapeHTML(p.title || '');
+  const tag = p.tag ? `[${escapeHTML(p.tag)}]` : '';
+  const description = escapeHTML(p.description || '');
+  const image = p.image || '';
+  const link = p.link || '#';
+  const alt = title;
+  return `
       <li class="blog-post-item">
         <a href="${link}">
           <figure class="blog-banner-box">
@@ -270,8 +264,44 @@ function renderPublications(items) {
           </div>
         </a>
       </li>`;
-  }).join('\n');
-  list.innerHTML = liHTML;
+}
+
+function renderPublications(items) {
+  const modules = document.querySelectorAll('[data-publications-module]');
+  if (!modules.length || !Array.isArray(items)) return;
+
+  const sortedItems = [...items].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+  modules.forEach(module => {
+    const list = module.querySelector('[data-pubs-list]');
+    const buttons = module.querySelectorAll('[data-pubs-theme-btn]');
+    const panels = module.querySelectorAll('[data-theme-panel]');
+    if (!list || !buttons.length) return;
+
+    let activeTheme = module.dataset.defaultTheme || buttons[0].dataset.theme;
+
+    const paint = () => {
+      buttons.forEach(button => {
+        button.classList.toggle('active', button.dataset.theme === activeTheme);
+      });
+
+      panels.forEach(panel => {
+        panel.classList.toggle('active', panel.dataset.themePanel === activeTheme);
+      });
+
+      const filtered = sortedItems.filter(item => (item.theme || 'perception') === activeTheme);
+      list.innerHTML = filtered.map(publicationCardHTML).join('\n');
+    };
+
+    buttons.forEach(button => {
+      button.addEventListener('click', function () {
+        activeTheme = this.dataset.theme;
+        paint();
+      });
+    });
+
+    paint();
+  });
 }
 
 (async function initDynamicSections() {

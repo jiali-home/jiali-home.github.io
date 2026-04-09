@@ -198,9 +198,10 @@
 
         <section class="about-text">
           <!-- <p> I'm a second year PhD student in the Department of Computer Science in the <a href="https://www.utdallas.edu/">University of Texas at Dallas</a>, where I study on computer vision and computer audition following <a href="https://www.yapengtian.com/">Prof. Yapeng Tian</a>. Previously, I got a Bachelor of Science in Mathematics from <a href="https://en.scu.edu.cn/">Sichuan University</a>.</p> -->
-          <p> I'm a CS PhD student at the University of Texas at Dallas, where I study on computer vision and computer audition following Prof. Yapeng Tian. </p>
-
-          <p> Prior to UTD, I got a Bachelor of Science in Mathematics from Sichuan University.</p>
+          <!-- <p> I'm a CS PhD student at the University of Texas at Dallas, where I study on computer vision and computer audition following Prof. Yapeng Tian. </p> -->
+          <p> I am a Ph.D. candidate in Computer Science at the <a href="https://www.utdallas.edu/">University of Texas at Dallas</a >, advised by <a href="https://www.yapengtian.com/">Prof. Yapeng Tian</a>. My research focuses on multimodal AI, with an emphasis on audio-visual learning, video understanding, and LLM-augmented multimodal systems. I am particularly interested in building robust and agentic AI systems that operate reliably in real-world settings.</p>
+          
+          <p> Prior to UTD, I received a Bachelor of Science in Mathematics from <a href="https://en.scu.edu.cn/"></a>Sichuan University</a>.</p>
 
         </section>
 
@@ -224,10 +225,50 @@
         <h2 class="h2 article-title">Publications</h2>
       </header>
 
-      <section class="blog-posts">
-        <ul class="blog-posts-list" id="pubs-list">
-          <!-- Publications will be injected by script.js from assets/data/publications.json -->
-        </ul>
+      <section class="research-overview" data-publications-module data-default-theme="perception">
+        <p class="research-narrative">
+          Building robust and agentic multimodal AI systems for real-world understanding and assistance.
+        </p>
+
+        <div class="research-theme-grid">
+          <button class="research-theme-card active" type="button" data-pubs-theme-btn data-theme="perception">
+            <span class="research-theme-kicker">A</span>
+            <h3 class="research-theme-title">Multimodal Perception &amp; Robustness</h3>
+            <p class="research-theme-summary">Robust audio-visual perception, out-of-distribution understanding, and reliable multimodal systems under real-world shifts.</p>
+          </button>
+
+          <button class="research-theme-card" type="button" data-pubs-theme-btn data-theme="reasoning">
+            <span class="research-theme-kicker">B</span>
+            <h3 class="research-theme-title">Agentic Multimodal Reasoning</h3>
+            <p class="research-theme-summary">LLM-integrated reasoning over visual and multimodal evidence with tool use, verification, and structured decision-making.</p>
+          </button>
+
+          <button class="research-theme-card" type="button" data-pubs-theme-btn data-theme="applications">
+            <span class="research-theme-kicker">C</span>
+            <h3 class="research-theme-title">Egocentric &amp; Real-World AI Applications</h3>
+            <p class="research-theme-summary">Causal egocentric perception and assistive multimodal AI designed for deployment, accessibility, and human-centered impact.</p>
+          </button>
+        </div>
+
+        <div class="research-theme-detail">
+          <div class="research-theme-copy active" data-theme-panel="perception">
+            <p>Theme A centers on multimodal perception that remains stable under ambiguity, spurious cues, and distribution shift. This line spans robust audio-visual segmentation, open-set adaptation, and benchmark-driven reliability analysis.</p>
+          </div>
+
+          <div class="research-theme-copy" data-theme-panel="reasoning">
+            <p>Theme B focuses on agentic multimodal reasoning: systems that do not just encode video, but iteratively reason over it using tools, skills, and verification. The goal is structured multimodal decision-making beyond one-shot inference.</p>
+          </div>
+
+          <div class="research-theme-copy" data-theme-panel="applications">
+            <p>Theme C grounds the agenda in egocentric and real-world AI applications, especially online gaze understanding, assistive computing, and multimodal systems that must operate causally and efficiently in deployment settings.</p>
+          </div>
+        </div>
+
+        <div class="blog-posts">
+          <ul class="blog-posts-list" data-pubs-list>
+            <!-- Publications will be injected by script.js from assets/data/publications.json -->
+          </ul>
+        </div>
       </section>
 
 
@@ -747,128 +788,50 @@
           <h2 class="h2 article-title">publications</h2>
         </header>
 
-        <section class="blog-posts">
+        <section class="research-overview" data-publications-module data-default-theme="perception">
+          <p class="research-narrative">
+            Building robust and agentic multimodal AI systems for real-world understanding and assistance.
+          </p>
 
-          <ul class="blog-posts-list">
+          <div class="research-theme-grid">
+            <button class="research-theme-card active" type="button" data-pubs-theme-btn data-theme="perception">
+              <span class="research-theme-kicker">A</span>
+              <h3 class="research-theme-title">Multimodal Perception &amp; Robustness</h3>
+              <p class="research-theme-summary">Robust audio-visual perception, out-of-distribution understanding, and reliable multimodal systems under real-world shifts.</p>
+            </button>
 
-            <li class="blog-post-item">
-              <a href="#">
+            <button class="research-theme-card" type="button" data-pubs-theme-btn data-theme="reasoning">
+              <span class="research-theme-kicker">B</span>
+              <h3 class="research-theme-title">Agentic Multimodal Reasoning</h3>
+              <p class="research-theme-summary">LLM-integrated reasoning over visual and multimodal evidence with tool use, verification, and structured decision-making.</p>
+            </button>
 
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/s2m.png" alt="S2M: Segment Any Out-of-Distribution Object" loading="lazy">
-                </figure>
+            <button class="research-theme-card" type="button" data-pubs-theme-btn data-theme="applications">
+              <span class="research-theme-kicker">C</span>
+              <h3 class="research-theme-title">Egocentric &amp; Real-World AI Applications</h3>
+              <p class="research-theme-summary">Causal egocentric perception and assistive multimodal AI designed for deployment, accessibility, and human-centered impact.</p>
+            </button>
+          </div>
 
-                <div class="blog-content">
+          <div class="research-theme-detail">
+            <div class="research-theme-copy active" data-theme-panel="perception">
+              <p>Theme A centers on multimodal perception that remains stable under ambiguity, spurious cues, and distribution shift. This line spans robust audio-visual segmentation, open-set adaptation, and benchmark-driven reliability analysis.</p>
+            </div>
 
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
+            <div class="research-theme-copy" data-theme-panel="reasoning">
+              <p>Theme B focuses on agentic multimodal reasoning: systems that do not just encode video, but iteratively reason over it using tools, skills, and verification. The goal is structured multimodal decision-making beyond one-shot inference.</p>
+            </div>
 
-                    <span class="dot"></span>
+            <div class="research-theme-copy" data-theme-panel="applications">
+              <p>Theme C grounds the agenda in egocentric and real-world AI applications, especially online gaze understanding, assistive computing, and multimodal systems that must operate causally and efficiently in deployment settings.</p>
+            </div>
+          </div>
 
-                    <time datetime="2024-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">[CVPR 2024]Segment Any Out-of-Distribution Object</h3>
-
-                  <p class="blog-text">
-                    ”S2M”, a novel framework that transforms anomaly scores into direct
-                    segmentation prompts, eliminating the need for threshold selection, thereby improving accuracy and reducing mask
-                    fragmentation.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/PTrue Case Study.svg" alt="LLM Reliable" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">[KDD 2024 Workshop]LLM Reliable</h3>
-
-                  <p class="blog-text">
-                    Measuring Aleatoric and Epistemic Uncertainty in LLMs: Empirical Evaluation on ID and OOD QA Tasks.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/av_mamba.png" alt="AV-Mamba" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">AV-Mamba</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">[CVPR 2024 Workshop]AV-Mamba</h3>
-
-                  <p class="blog-text">
-                    Cross-modality selective state space models for audio-visual question answering.
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-            <li class="blog-post-item">
-              <a href="#">
-
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/NPSS.svg" alt="NPSS" loading="lazy">
-                </figure>
-
-                <div class="blog-content">
-
-                  <div class="blog-meta">
-                    <p class="blog-category">Design</p>
-
-                    <span class="dot"></span>
-
-                    <time datetime="2022-02-23">Fab 23, 2022</time>
-                  </div>
-
-                  <h3 class="h3 blog-item-title">[IAPRR Project]HAYSTAC</h3>
-
-                  <p class="blog-text">
-                    Systematically detects and validates trajectory anomalies through
-                    five integrated components: trip-level feature extraction, anomaly detectors, two-stage empirical calibration,
-                    nonparametric statistical scanning (NPSS), and final empirical calibration
-                  </p>
-
-                </div>
-
-              </a>
-            </li>
-
-          </ul>
-
+          <div class="blog-posts">
+            <ul class="blog-posts-list" data-pubs-list>
+              <!-- Publications will be injected by script.js from assets/data/publications.json -->
+            </ul>
+          </div>
         </section>
 
       </article>
