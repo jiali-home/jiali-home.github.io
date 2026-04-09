@@ -14,7 +14,7 @@
     ],
     "image": "./assets/images/gaze_future.png",
     "description": "We study how future context affects egocentric gaze estimation and introduce Future Privileged Distillation, enabling a strictly causal student model to learn from a future-aware teacher while remaining real-time at inference.",
-    "link": "#",
+    "link": "./assets/papers/how-much-future-helps.pdf",
     "date": "2026-04",
     "theme": "applications"
   },
