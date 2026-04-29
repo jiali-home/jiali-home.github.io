@@ -1,12 +1,10 @@
 ---
-layout: post
+
+## layout: post
 title: So, how attention actually works?
 summary: Why attention was needed? what it is?
----
 
 When I first hear the term attention in deep learning, it sounds almost human — as if the model is “focusing” on certain parts of the input more than others. And that’s actually not too far from the truth. The attention mechanism allows a model to decide which pieces of information are most relevant when processing a sequence, whether that’s a sentence, an image, or even a series of actions.
-
-
 
 ## The Mechanics: Query, Key, and Value
 
@@ -26,20 +24,16 @@ $$
 
 Let’s break this down:
 
-1. **Similarity Score:**  
-   $QK^T$ measures how much each **Query** aligns with each **Key** — basically, *how relevant is each input token to the one we’re currently looking at?*
-
-2. **Scaling:**  
-   The division by $ \sqrt{d_k} $ keeps the values stable (prevents very large dot products when the vector dimension is large).
-
-3. **Softmax:**  
-   Converts the similarity scores into probabilities that sum to 1 — these are our *attention weights*.
-
-4. **Weighted Sum:**  
-   Multiply these weights with the **Value (V)** vectors to get a weighted representation — this is what the model will actually use as contextual information.
+1. **Similarity Score:**
+  $QK^T$ measures how much each **Query** aligns with each **Key** — basically, *how relevant is each input token to the one we’re currently looking at?*
+2. **Scaling:**
+  The division by $ \sqrt{d_k} $ keeps the values stable (prevents very large dot products when the vector dimension is large).
+3. **Softmax:**
+  Converts the similarity scores into probabilities that sum to 1 — these are our *attention weights*.
+4. **Weighted Sum:**
+  Multiply these weights with the **Value (V)** vectors to get a weighted representation — this is what the model will actually use as contextual information.
 
 ## But where Do Q, K, and V Come From?
-
 
 In the Transformer architecture, these vectors aren’t given magically — they’re *learned linear projections* derived from the **input embeddings**.
 
@@ -76,6 +70,7 @@ where:
 - $ d_k $ is typically smaller than $ d_{\text{model}} $ (e.g., 64 if $ d_{\text{model}} = 512 $ and there are 8 attention heads).
 
 This means:
+
 - Each **token embedding** gets mapped into **three distinct vector spaces** — one for queries, one for keys, and one for values.
 - These projections let the model learn different ways to compare and extract information.
 
@@ -83,10 +78,11 @@ This means:
 
 #### 3. **Where This Happens in the Transformer**
 
-- In the **encoder**, Q, K, and V all come from the same source sequence → *self-attention*.  
+- In the **encoder**, Q, K, and V all come from the same source sequence → *self-attention*.
 
 Self-attention allows each token in a sequence to attend to *other tokens in the same sequence*.
 If your input sentence is:
+
 > “The cat sat on the mat.”
 
 When encoding the word *“sat”*, the model can look at *“cat”* to understand that the subject doing the action is *“cat”*.
@@ -98,9 +94,6 @@ Q, K, V = \text{from the same input sequence (X)}
 $$
 
 This is why it’s called **self-attention** — the model is attending to *itself*.
-
-
-
 
 - In the **decoder**, the first attention block is self-attention again, but the second uses:
   - Q from the decoder,  
@@ -114,11 +107,10 @@ $$
 Q = \text{from decoder}, \quad K = \text{from encoder}, \quad V = \text{from encoder}
 $$
 The decoder sends out a **Query** like:  
+
 > “I’m about to generate the next word — what parts of the input sentence should I focus on?”
 
 And the encoder responds with its **Keys** and **Values** that represent the meaning of the entire input sentence.
-
-
 
 ## What Is Multi-Head Attention?
 
@@ -146,7 +138,6 @@ $$
 $$
 
 where $ W_O $ is a learned projection back to the model dimension.
-
 
 ```python
 # attention_modules.py
@@ -390,3 +381,4 @@ class MultiHeadCrossAttention(nn.Module):
         return y, attn  # (B,H,Lq,Lk)
 
 ```
+

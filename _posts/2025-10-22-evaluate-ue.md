@@ -1,10 +1,8 @@
 ---
-layout: post
+
+## layout: post
 title: Measuring Uncertainty Estimation - How to Evaluate Confidence in Language Models
 summary: A blog post about PRR
----
-
-
 
 In the world of **Large Language Models (LLMs)**, understanding *what a model knows* is just as important as understanding *what it doesn’t*.  
 Uncertainty Estimation (UE) methods help us quantify a model’s confidence in its outputs — but how do we know if a UE method itself is **effective**?
@@ -48,12 +46,12 @@ Thus, PRR quantifies **how efficiently model quality improves** as low-confidenc
 
 ### 2.2 Step 1: Build the Prediction Rejection (PR) Curve
 
-For a given dataset $\{x_i, y_i\}_{i=1}^N$ and their generated responses $f(x_i)$:
+For a given dataset $x_i, y_i_{i=1}^N$ and their generated responses $f(x_i)$:
 
-1. Compute the **uncertainty score** $U_i = U(f(x_i))$ for each response.  
-2. Compute a **quality score** $Q(f(x_i), x_i, y_i)$, where  
-   $Q = 1$ means a perfect match with the ground truth (e.g., by LLMScore or semantic similarity).  
-3. Sort all responses by **descending uncertainty** and progressively reject them.  
+1. Compute the **uncertainty score** $U_i = U(f(x_i))$ for each response.
+2. Compute a **quality score** $Q(f(x_i), x_i, y_i)$, where
+  $Q = 1$ means a perfect match with the ground truth (e.g., by LLMScore or semantic similarity).
+3. Sort all responses by **descending uncertainty** and progressively reject them.
 4. At each rejection rate $r \in [0, 1]$, calculate the **average quality** of the remaining accepted predictions.
 
 Plot this as the **Prediction Rejection (PR) Curve**, where:
@@ -68,7 +66,7 @@ Plot this as the **Prediction Rejection (PR) Curve**, where:
 Let $A_{\text{UE}}$ denote the area under the PR curve for a given UE method.
 
 $$
-A_{\text{UE}} = \int_0^1 Q_r \, dr,
+A_{\text{UE}} = \int_0^1 Q_r  dr,
 $$
 
 where $Q_r$ is the average quality at rejection rate $r$.
@@ -103,6 +101,7 @@ A_{\text{oracle}} - A_{\text{random}}
 $$
 
 Here:
+
 - $A_{\text{UE}}$: area under the UE method’s PR curve  
 - $A_{\text{oracle}}$: area under the oracle curve  
 - $A_{\text{random}}$: area under the random curve (baseline)
@@ -112,11 +111,11 @@ Here:
 ### 2.6 Interpretation
 
 - $\text{PRR} \approx 1$:  
-  The UE method performs nearly as well as the oracle — it **perfectly identifies unreliable predictions**.  
+The UE method performs nearly as well as the oracle — it **perfectly identifies unreliable predictions**.  
 - $\text{PRR} \approx 0$:  
-  The UE method behaves no better than random guessing.  
+The UE method behaves no better than random guessing.  
 - $\text{PRR} < 0$:  
-  The method is **misleading** — high uncertainty corresponds to *better* answers, indicating an inverted correlation.
+The method is **misleading** — high uncertainty corresponds to *better* answers, indicating an inverted correlation.
 
 ---
 
@@ -124,11 +123,13 @@ Here:
 
 While traditional metrics like **AUROC** or **AUPRC** measure general discriminative ability, PRR has several key advantages for LLMs:
 
-| Metric | Focus | Limitation | Advantage of PRR |
-|:-------|:------|:------------|:-----------------|
-| **AUROC** | Distinguishes correct vs. incorrect | Does not measure *utility* of rejection | PRR reflects actual *quality improvement* after rejection |
-| **ECE / Brier Score** | Calibration of probabilities | Requires probabilistic confidence, not always available | PRR uses any form of uncertainty score |
-| **PRR** | Measures *utility* of UE for filtering outputs | — | Directly connects uncertainty to decision-making |
+
+| Metric                | Focus                                          | Limitation                                              | Advantage of PRR                                          |
+| --------------------- | ---------------------------------------------- | ------------------------------------------------------- | --------------------------------------------------------- |
+| **AUROC**             | Distinguishes correct vs. incorrect            | Does not measure *utility* of rejection                 | PRR reflects actual *quality improvement* after rejection |
+| **ECE / Brier Score** | Calibration of probabilities                   | Requires probabilistic confidence, not always available | PRR uses any form of uncertainty score                    |
+| **PRR**               | Measures *utility* of UE for filtering outputs | —                                                       | Directly connects uncertainty to decision-making          |
+
 
 Thus, PRR is not just a diagnostic metric but a **deployment-oriented tool** — it tells us *how much better the system becomes* when we reject uncertain outputs.
 
@@ -137,6 +138,7 @@ Thus, PRR is not just a diagnostic metric but a **deployment-oriented tool** —
 ## 4. Practical Example
 
 Suppose we have 100 model outputs, each with:
+
 - A quality score $Q_i$ (between 0 and 1)
 - An uncertainty estimate $U_i$
 
@@ -162,12 +164,14 @@ This means the UE method achieves **65% of the optimal rejection performance** �
 
 ## 5. Interpreting PRR in Practice
 
-| PRR Value | Interpretation | Reliability |
-|:-----------|:---------------|:-------------|
-| **0.9–1.0** | Nearly optimal | Excellent — highly reliable UE |
-| **0.6–0.8** | Strong correlation | Good, practical for filtering |
-| **0.3–0.5** | Weak discrimination | Needs refinement |
-| **< 0.3** | Poor or misleading | Unreliable uncertainty scores |
+
+| PRR Value   | Interpretation      | Reliability                    |
+| ----------- | ------------------- | ------------------------------ |
+| **0.9–1.0** | Nearly optimal      | Excellent — highly reliable UE |
+| **0.6–0.8** | Strong correlation  | Good, practical for filtering  |
+| **0.3–0.5** | Weak discrimination | Needs refinement               |
+| **< 0.3**   | Poor or misleading  | Unreliable uncertainty scores  |
+
 
 ---
 
