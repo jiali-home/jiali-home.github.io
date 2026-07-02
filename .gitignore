@@ -1,0 +1,6 @@
+_site/
+.cache/
+.cursor/
+.DS_Store
+*.swp
+*~
