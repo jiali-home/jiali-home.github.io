@@ -1,47 +1,106 @@
 [
   {
-    "date": "2025-11",
-    "text": "One paper is accepted by AAAI-Main Track 2026! (Acceptance rate: 17.6%)",
+    "date": "2026-06",
+    "icon": "ribbon-outline",
+    "text": "Our paper \"What to Distinguish and How? Opportunities and Challenges of Augmenting Multiple, Cluttered Objects in Complex Scenes for People with Low Vision\" is accepted to **ASSETS 2026**! (Acceptance rate: **30.18%**) 🎉",
     "links": []
   },
   {
-    "date": "2025-11",
-    "text": "One paper is accepted by AAAI-AISI 2026! (Acceptance rate: 24.1%)",
+    "date": "2026-05",
+    "icon": "briefcase-outline",
+    "text": "I started my internship at **AT&T**! 💼",
     "links": []
   },
   {
+    "date": "2026-05",
+    "icon": "medal-outline",
+    "text": "I received the **Gold Reviewer Award** at **ICML 2026**! 🏅",
+    "links": []
+  },
+  {
+    "date": "2026-05",
+    "icon": "trophy-outline",
+    "text": "Our paper \"How Much Future Helps? A Controlled Study of Future-Privileged Supervision for Causal Egocentric Gaze Estimation\" is accepted to the **7th International Workshop on Eye and Gaze in Computer Vision (GAZE 2026)** at **CVPR 2026** and received the **Best Paper Award**! 🏆",
+    "links": [
+      {
+        "href": "./assets/papers/how-much-future-helps.pdf",
+        "label": "paper"
+      }
+    ]
+  },
+  {
+    "date": "2026-03",
+    "icon": "school-outline",
+    "text": "Our paper \"Mitigating the ID-OOD Tradeoff in Open-Set Test-Time Adaptation\" is accepted to **CVPR 2026 Findings**! 🎓",
+    "links": [
+      {
+        "href": "https://openaccess.thecvf.com/content/CVPR2026F/papers/Zhao_Mitigating_the_ID-OOD_Tradeoff_in_Open-Set_Test-Time_Adaptation_CVPRF_2026_paper.pdf",
+        "label": "paper"
+      }
+    ]
+  },
+  {
     "date": "2025-11",
-    "text": "I was served as a Reviewer for ICLR 2026.",
+    "icon": "ribbon-outline",
+    "text": "Our paper \"Do Audio-Visual Segmentation Models Truly Segment Sounding Objects?\" is accepted to **AAAI 2026 Main Track**! (Acceptance rate: **17.6%**) 🎉",
+    "links": [
+      {
+        "href": "https://doi.org/10.1609/aaai.v40i8.37542",
+        "label": "paper"
+      }
+    ]
+  },
+  {
+    "date": "2025-11",
+    "icon": "ribbon-outline",
+    "text": "Our paper \"Toward Gaze Target Detection in Young Autistic Children\" is accepted to **AAAI 2026 AISI Track**! (Acceptance rate: **24.1%**) 🎉",
+    "links": [
+      {
+        "href": "https://ojs.aaai.org/index.php/AAAI/article/view/41177",
+        "label": "paper"
+      }
+    ]
+  },
+  {
+    "date": "2025-11",
+    "icon": "create-outline",
+    "text": "I served as a Reviewer for **ICLR 2026**.",
     "links": []
   },
   {
     "date": "2025-10",
-    "text": "I was served as a Reviewer for CHI 2026 and AISTATS 2026.",
+    "icon": "create-outline",
+    "text": "I served as a Reviewer for **CHI 2026** and **AISTATS 2026**.",
     "links": []
   },
   {
     "date": "2025-09",
-    "text": "I was served as a Reviewer for AAAI 2026.",
+    "icon": "create-outline",
+    "text": "I served as a Reviewer for **AAAI 2026**.",
     "links": []
   },
   {
     "date": "2025-08",
-    "text": "I was served as a Reviewer for TMLR and ICCV Workshop 2025.",
+    "icon": "create-outline",
+    "text": "I served as a Reviewer for **TMLR** and **ICCV Workshop 2025**.",
     "links": []
   },
   {
     "date": "2025-07",
-    "text": "I was served as a Reviewer for NeurIPS 2025.",
+    "icon": "create-outline",
+    "text": "I served as a Reviewer for **NeurIPS 2025**.",
     "links": []
   },
   {
     "date": "2025-03",
-    "text": "I was served as a Reviewer for ICML 2025.",
+    "icon": "create-outline",
+    "text": "I served as a Reviewer for **ICML 2025**.",
     "links": []
   },
   {
     "date": "2024-11",
-    "text": "I was in the top reviewers for NeurIPS 2024!",
+    "icon": "star-outline",
+    "text": "I was in the **top reviewers** for **NeurIPS 2024**! ⭐",
     "links": [
       {
         "href": "https://neurips.cc/Conferences/2024/ProgramCommittee#top-reviewers",
@@ -51,29 +110,49 @@
   },
   {
     "date": "2024-08",
-    "text": "One paper is accepted by UCM-KDD 2024. Congratulations to Kevin!",
-    "links": []
+    "icon": "ribbon-outline",
+    "text": "Our paper \"Measuring Aleatoric and Epistemic Uncertainty in LLMs: Empirical Evaluation on ID and OOD QA Tasks\" is accepted to **UDM-KDD 2024**! Congratulations to **Kevin**! 🎉",
+    "links": [
+      {
+        "href": "https://arxiv.org/abs/2511.03166",
+        "label": "paper"
+      }
+    ]
   },
   {
     "date": "2024-07",
-    "text": "I will serve as a Reviewer for NeurIPS 2024.",
+    "icon": "create-outline",
+    "text": "I will serve as a Reviewer for **NeurIPS 2024**.",
     "links": []
   },
   {
     "date": "2024-06",
-    "text": "I will join Prof. Yapeng Tian's lab to pursue a PhD degree at University of Texas at Dallas! 🌱",
+    "icon": "school-outline",
+    "text": "I will join **Prof. Yapeng Tian**'s lab to pursue a PhD at **University of Texas at Dallas**! 🌱",
     "links": [
       { "href": "https://www.yapengtian.com/", "label": "Prof. Yapeng Tian" }
     ]
   },
   {
     "date": "2024-05",
-    "text": "One paper is accepted by CVPR Sight and Sound Workshop 2024. Congratulations to Ziru!",
-    "links": []
+    "icon": "ribbon-outline",
+    "text": "Our paper \"AV-Mamba: Cross-Modality Selective State Space Models for Audio-Visual Question Answering\" is accepted to **CVPR Sight and Sound Workshop 2024**! Congratulations to **Ziru**! 🎉",
+    "links": [
+      {
+        "href": "https://sightsound.org/papers/2024/Huang_AV-Mamba_Cross-Modality_Selective_State_Space_Models_for_Audio-Visual_Question_Answering.pdf",
+        "label": "paper"
+      }
+    ]
   },
   {
     "date": "2024-02",
-    "text": "One paper is accepted by CVPR 2024. Congratulations to Wenjie!",
-    "links": []
+    "icon": "ribbon-outline",
+    "text": "Our paper \"Segment Any Out-of-Distribution Object\" is accepted to **CVPR 2024**! Congratulations to **Wenjie**! 🎉",
+    "links": [
+      {
+        "href": "https://openaccess.thecvf.com/content/CVPR2024/papers/Zhao_Segment_Every_Out-of-Distribution_Object_CVPR_2024_paper.pdf",
+        "label": "paper"
+      }
+    ]
   }
 ]

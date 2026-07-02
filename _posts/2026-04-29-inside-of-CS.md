@@ -248,6 +248,43 @@ This progression is why the early courses matter: they prepare you to understand
 
 ---
 
+## **Why First-Year Foundations Matter**
+
+In the first year, you may not immediately build a large AI system, a complex app, or a research prototype. You may spend time learning foundations: programming, logic, math, debugging, teamwork, and communication.
+
+At first, those foundations can feel disconnected from the exciting systems you see in the world.
+
+But they are not disconnected.
+
+They are the base layer.
+
+Programming teaches you how to turn ideas into precise instructions.
+
+Logic teaches you how to reason carefully about behavior.
+
+Mathematics helps you model patterns, structure, and change.
+
+Debugging teaches you how to learn from failure.
+
+Testing teaches you that a system working once is not the same as a system working reliably.
+
+Teamwork teaches you how to build with other people.
+
+Communication teaches you how to explain technical decisions clearly.
+
+Even in our tiny pinch example, you need many first-year ideas:
+
+- variables to remember state,
+- conditionals to make decisions,
+- loops or repeated execution to understand frames over time,
+- debugging to explain the flicker,
+- testing to compare a quick pinch and a long pinch,
+- communication to explain why the first solution failed.
+
+So first-year foundations are not just requirements. They are tools that help you build larger systems later.
+
+---
+
 ## **What You Build in CS**
 
 One of the most exciting parts of Computer Science is that the things you learn can become things you build.
@@ -284,43 +321,6 @@ But across these projects, the mindset is similar:
 That cycle is one of the reasons CS is powerful.
 
 It lets students move from ideas to working systems.
-
----
-
-## **Why First-Year Foundations Matter**
-
-In the first year, you may not immediately build a large AI system, a complex app, or a research prototype. You may spend time learning foundations: programming, logic, math, debugging, teamwork, and communication.
-
-At first, those foundations can feel disconnected from the exciting systems you see in the world.
-
-But they are not disconnected.
-
-They are the base layer.
-
-Programming teaches you how to turn ideas into precise instructions.
-
-Logic teaches you how to reason carefully about behavior.
-
-Mathematics helps you model patterns, structure, and change.
-
-Debugging teaches you how to learn from failure.
-
-Testing teaches you that a system working once is not the same as a system working reliably.
-
-Teamwork teaches you how to build with other people.
-
-Communication teaches you how to explain technical decisions clearly.
-
-Even in our tiny pinch example, you need many first-year ideas:
-
-- variables to remember state,
-- conditionals to make decisions,
-- loops or repeated execution to understand frames over time,
-- debugging to explain the flicker,
-- testing to compare a quick pinch and a long pinch,
-- communication to explain why the first solution failed.
-
-So first-year foundations are not just requirements. They are tools that help you build larger systems later.
 
 ---
 
@@ -389,7 +389,8 @@ But they are also profoundly human questions.
 
 ## **Where Can CS Take You?**
 
-Computer Science can lead to many paths. Instead of thinking about those paths only as job titles, it may help to think about the kinds of problems you enjoy.
+After seeing what CS teaches and how its foundations work, the next question is practical: where can this major take you?
+The answer is not one path. Instead of thinking about CS only as a list of job titles, it may help to think about the kinds of problems you enjoy.
 
 If you like building things people use every day, CS can lead to software engineering, app development, product engineering, or web and mobile development.
 
@@ -447,9 +448,7 @@ Computer Science asks:
 - Can we improve it?
 - Can it support real people in real situations?
 
-That is why CS is not only about learning to code.
-
-It is about learning how to design, build, test, and improve computational systems that solve real problems.
+That is why CS is not only about learning to code. It is about learning how to build computational systems thoughtfully and responsibly.
 
 I entered CS because I was looking for a way to build. I stayed because I learned that building well requires more than tools. It requires reasoning, testing, empathy, and responsibility.
 
@@ -465,4 +464,4 @@ And maybe, as you explore this field, it can help you begin answering your own.
 
 This is the first stop in the *Inside the Majors* series. If there is one map I hope you take from this stop, it is this:
 
-**Computer Science is not just about learning tools. It is about turning questions into systems -- and then asking whether those systems actually work for people.**
+**Computer Science is not just about learning tools. It is about turning questions into systems — and then asking whether those systems actually work for people.**

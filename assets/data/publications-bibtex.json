@@ -1,0 +1,52 @@
+{
+  "how-much-future-helps-a-controlled-study-of-future-privileged-supervision-for-ca": {
+    "title": "How Much Future Helps? A Controlled Study of Future-Privileged Supervision for Causal Egocentric Gaze Estimation",
+    "source": "generated",
+    "bibtex": "@article{li2026how,\n  title={How Much Future Helps? A Controlled Study of Future-Privileged Supervision for Causal Egocentric Gaze Estimation},\n  author={Jia Li and Wenjie Zhao and Fnu Atisri and Sanskriti Aripineni and Shijian Deng and Jon E. Froehlich and Yuhang Zhao and Yapeng Tian},\n  year={2026},\n  note={GAZE 2026 (CVPR Workshop) | Best Paper Award},\n}"
+  },
+  "mvx-bench-a-multi-video-cross-dimension-benchmark-for-multi-video-understanding": {
+    "title": "MVX-Bench: A Multi-Video Cross-Dimension Benchmark for Multi-Video Understanding",
+    "source": "arxiv",
+    "bibtex": "@misc{zhang2026skillaugmentedagenticframeworkbenchmark,\n      title={A Skill-augmented Agentic Framework and Benchmark for Multi-Video Understanding}, \n      author={Yue Zhang and Liqiang Jing and Jia Li and Yapeng Tian and Xinya Du and Yunhui Guo and Vibhav Gogate},\n      year={2026},\n      eprint={2603.14733},\n      archivePrefix={arXiv},\n      primaryClass={cs.CV},\n      url={https://arxiv.org/abs/2603.14733}, \n}"
+  },
+  "argaze-autoregressive-transformers-for-online-egocentric-gaze-estimation": {
+    "title": "ARGaze: Autoregressive Transformers for Online Egocentric Gaze Estimation",
+    "source": "arxiv",
+    "bibtex": "@misc{li2026argazeautoregressivetransformersonline,\n      title={ARGaze: Autoregressive Transformers for Online Egocentric Gaze Estimation}, \n      author={Jia Li and Wenjie Zhao and Shijian Deng and Bolin Lai and Yuheng Wu and RUijia Chen and Jon E. Froehlich and Yuhang Zhao and Yapeng Tian},\n      year={2026},\n      eprint={2602.05132},\n      archivePrefix={arXiv},\n      primaryClass={cs.CV},\n      url={https://arxiv.org/abs/2602.05132}, \n}"
+  },
+  "toward-gaze-target-detection-in-young-autistic-children": {
+    "title": "Toward Gaze Target Detection in Young Autistic Children",
+    "source": "arxiv",
+    "bibtex": "@misc{deng2025gazetargetdetectionyoung,\n      title={Toward Gaze Target Detection of Young Autistic Children}, \n      author={Shijian Deng and Erin E. Kosloski and Siva Sai Nagender Vasireddy and Jia Li and Randi Sierra Sherwood and Feroz Mohamed Hatha and Siddhi Patel and Pamela R Rollins and Yapeng Tian},\n      year={2025},\n      eprint={2511.11244},\n      archivePrefix={arXiv},\n      primaryClass={cs.CV},\n      url={https://arxiv.org/abs/2511.11244}, \n}"
+  },
+  "do-audio-visual-segmentation-models-truly-segment-sounding-objects": {
+    "title": "Do Audio-Visual Segmentation Models Truly Segment Sounding Objects?",
+    "source": "doi",
+    "bibtex": "@article{\n  Li_2026, title={Do Audio-Visual Segmentation Models Truly Segment Sounding Objects?},\n  volume={40},\n  ISSN={2159-5399},\n  url={http://dx.doi.org/10.1609/aaai.v40i8.37542},\n  DOI={10.1609/aaai.v40i8.37542},\n  number={8},\n  journal={Proceedings of the AAAI Conference on Artificial Intelligence},\n  publisher={Association for the Advancement of Artificial Intelligence (AAAI)},\n  author={Li, Jia and Zhao, Wenjie and Huang, Ziru and Guo, Yunhui and Tian, Yapeng},\n  year={2026},\n  month=Mar, pages={6172–6180} \n}"
+  },
+  "segment-any-out-of-distribution-object": {
+    "title": "Segment Any Out-of-Distribution Object",
+    "source": "arxiv",
+    "bibtex": "@misc{zhao2024segmentoutofdistributionobject,\n      title={Segment Every Out-of-Distribution Object}, \n      author={Wenjie Zhao and Jia Li and Xin Dong and Yu Xiang and Yunhui Guo},\n      year={2024},\n      eprint={2311.16516},\n      archivePrefix={arXiv},\n      primaryClass={cs.CV},\n      url={https://arxiv.org/abs/2311.16516}, \n}"
+  },
+  "from-waveforms-to-pixels-a-survey-on-audio-visual-segmentation": {
+    "title": "From Waveforms to Pixels: A Survey on Audio-Visual Segmentation",
+    "source": "arxiv",
+    "bibtex": "@misc{li2025waveformspixelssurveyaudiovisual,\n      title={From Waveforms to Pixels: A Survey on Audio-Visual Segmentation}, \n      author={Jia Li and Yapeng Tian},\n      year={2025},\n      eprint={2508.03724},\n      archivePrefix={arXiv},\n      primaryClass={cs.CV},\n      url={https://arxiv.org/abs/2508.03724}, \n}"
+  },
+  "mitigating-the-id-ood-tradeoff-in-open-set-test-time-adaptation": {
+    "title": "Mitigating the ID-OOD Tradeoff in Open-Set Test-Time Adaptation",
+    "source": "arxiv",
+    "bibtex": "@misc{zhao2026mitigatingidoodtradeoffopenset,\n      title={Mitigating the ID-OOD Tradeoff in Open-Set Test-Time Adaptation}, \n      author={Wenjie Zhao and Jia Li and Xin Dong and Yapeng Tian and Yu Xiang and Yunhui Guo},\n      year={2026},\n      eprint={2604.01589},\n      archivePrefix={arXiv},\n      primaryClass={cs.CV},\n      url={https://arxiv.org/abs/2604.01589}, \n}"
+  },
+  "measuring-aleatoric-and-epistemic-uncertainty-in-llms-empirical-evaluation-on-id": {
+    "title": "Measuring Aleatoric and Epistemic Uncertainty in LLMs: Empirical Evaluation on ID and OOD QA Tasks",
+    "source": "arxiv",
+    "bibtex": "@misc{wang2025measuringaleatoricepistemicuncertainty,\n      title={Measuring Aleatoric and Epistemic Uncertainty in LLMs: Empirical Evaluation on ID and OOD QA Tasks}, \n      author={Kevin Wang and Subre Abdoul Moktar and Jia Li and Kangshuo Li and Feng Chen},\n      year={2025},\n      eprint={2511.03166},\n      archivePrefix={arXiv},\n      primaryClass={cs.CL},\n      url={https://arxiv.org/abs/2511.03166}, \n}"
+  },
+  "av-mamba-cross-modality-selective-state-space-models-for-audio-visual-question-a": {
+    "title": "AV-Mamba: Cross-Modality Selective State Space Models for Audio-Visual Question Answering",
+    "source": "generated",
+    "bibtex": "@article{huang2024avmamba,\n  title={AV-Mamba: Cross-Modality Selective State Space Models for Audio-Visual Question Answering},\n  author={Ziru Huang and Jia Li and Wenjie Zhao and Yunhui Guo and Yapeng Tian},\n  year={2024},\n  note={CVPR 2024 Workshop},\n}"
+  }
+}
