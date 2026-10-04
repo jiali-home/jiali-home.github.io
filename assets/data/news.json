@@ -1,5 +1,17 @@
 [
   {
+    "date": "2026-10",
+    "icon": "briefcase-outline",
+    "text": "I am on the **2026–27 faculty job market**! Feel free to reach out.",
+    "links": []
+  },
+  {
+    "date": "2026-08",
+    "icon": "school-outline",
+    "text": "I am teaching my own section of **ECS 1100: Introduction to Engineering and Computer Science** at UT Dallas as instructor of record.",
+    "links": []
+  },
+  {
     "date": "2026-06",
     "icon": "ribbon-outline",
     "text": "Our paper \"What to Distinguish and How? Opportunities and Challenges of Augmenting Multiple, Cluttered Objects in Complex Scenes for People with Low Vision\" is accepted to **ASSETS 2026**! (Acceptance rate: **30.18%**) 🎉",

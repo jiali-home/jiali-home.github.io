@@ -1,5 +1,41 @@
 [
   {
+    "title": "Talking to Me or Someone Else? Rethinking Talk-to-Me Detection in Egocentric Videos",
+    "tag": "ACM MM 2026",
+    "authors": [
+      "Feiyu Du",
+      "Xi He",
+      "Jia Li",
+      "Yapeng Tian",
+      "Weili Wu"
+    ],
+    "description": "We revisit talk-to-me detection in egocentric video, distinguishing speech directed at the camera wearer from talking to others, self-talk, and background speech in an online, frame-level setting.",
+    "link": "https://arxiv.org/abs/2609.14118",
+    "date": "2026-09",
+    "theme": "reasoning"
+  },
+  {
+    "title": "What to Distinguish and How? Opportunities and Challenges of Augmenting Multiple, Cluttered Objects in Complex Scenes for People with Low Vision",
+    "tag": "ASSETS 2026",
+    "authors": [
+      "Yuheng Wu",
+      "Ruijia Chen",
+      "Jaewook Lee",
+      "Jia Li",
+      "Kexin Zhang",
+      "Meng Fong Lio",
+      "Weibing Wang",
+      "Sanbrita Mondal",
+      "Jon E. Froehlich",
+      "Yapeng Tian",
+      "Yuhang Zhao"
+    ],
+    "description": "SceneGlance, a wearable AR system that segments important objects and distinguishes them by importance for people with low vision, studied in kitchen and outdoor settings.",
+    "link": "https://doi.org/10.1145/3797867.3828974",
+    "date": "2026-06",
+    "theme": "perception"
+  },
+  {
     "title": "How Much Future Helps? A Controlled Study of Future-Privileged Supervision for Causal Egocentric Gaze Estimation",
     "tag": "GAZE 2026 (CVPR Workshop) | Best Paper Award",
     "authors": [
@@ -16,12 +52,27 @@
     "description": "We study how future context affects egocentric gaze estimation and introduce Future Privileged Distillation, enabling a strictly causal student model to learn from a future-aware teacher while remaining real-time at inference.",
     "link": "./assets/papers/how-much-future-helps.pdf",
     "date": "2026-05",
-    "theme": "applications",
+    "theme": "perception",
     "catalogThumb": "./assets/images/pub-thumbs/how-much-future-helps-a-controlled-study-of-future-privileged-supervision-for-ca.jpg"
   },
   {
-    "title": "MVX-Bench: A Multi-Video Cross-Dimension Benchmark for Multi-Video Understanding",
-    "tag": "Preprint",
+    "title": "CURE-OOD: Benchmarking Out-of-Distribution Detection for Survival Prediction",
+    "tag": "TMLR 2026",
+    "authors": [
+      "Wenjie Zhao",
+      "Jia Li",
+      "Mingrui Liu",
+      "Jing Wang",
+      "Yunhui Guo"
+    ],
+    "description": "A benchmark for out-of-distribution detection in survival prediction.",
+    "link": "https://arxiv.org/abs/2605.00350",
+    "date": "2026-05",
+    "theme": "applications"
+  },
+  {
+    "title": "A Skill-augmented Agentic Framework and Benchmark for Multi-Video Understanding",
+    "tag": "EMNLP 2026 Findings",
     "authors": [
       "Yue Zhang",
       "Liqiang Jing",
@@ -40,7 +91,7 @@
   },
   {
     "title": "ARGaze: Autoregressive Transformers for Online Egocentric Gaze Estimation",
-    "tag": "arXiv 2026",
+    "tag": "Under review at TMLR",
     "authors": [
       "Jia Li",
       "Wenjie Zhao",
@@ -56,11 +107,11 @@
     "description": "ARGaze reformulates online egocentric gaze estimation as causal autoregressive sequence prediction with a bounded gaze history window, enabling constant-memory streaming and faster inference with improved robustness.",
     "link": "https://arxiv.org/abs/2602.05132",
     "date": "2026-02",
-    "theme": "applications",
+    "theme": "perception",
     "catalogThumb": "./assets/images/pub-thumbs/argaze-autoregressive-transformers-for-online-egocentric-gaze-estimation.jpg"
   },
   {
-    "title": "Toward Gaze Target Detection in Young Autistic Children",
+    "title": "Toward Gaze Target Detection of Young Autistic Children",
     "tag": "AAAI 2026 AISI Track",
     "authors": [
       "Shijian Deng",
@@ -87,7 +138,7 @@
       }
     ],
     "date": "2025-11",
-    "theme": "applications",
+    "theme": "reasoning",
     "catalogThumb": "./assets/images/pub-thumbs/toward-gaze-target-detection-in-young-autistic-children.jpg"
   },
   {
@@ -118,11 +169,24 @@
       }
     ],
     "date": "2025-11",
-    "theme": "perception",
+    "theme": "applications",
     "catalogThumb": "./assets/images/pub-thumbs/do-audio-visual-segmentation-models-truly-segment-sounding-objects.jpg"
   },
   {
-    "title": "Segment Any Out-of-Distribution Object",
+    "title": "From Pixel to Mask: A Survey of Out-of-Distribution Segmentation",
+    "tag": "Preprint",
+    "authors": [
+      "Wenjie Zhao",
+      "Jia Li",
+      "Yunhui Guo"
+    ],
+    "description": "A survey of out-of-distribution segmentation methods, benchmarks, and open challenges.",
+    "link": "https://arxiv.org/abs/2508.10309",
+    "date": "2025-08",
+    "theme": "applications"
+  },
+  {
+    "title": "Segment Every Out-of-Distribution Object",
     "tag": "CVPR 2024",
     "authors": [
       "Wenjie Zhao",
@@ -142,7 +206,7 @@
       }
     ],
     "date": "2024-02",
-    "theme": "perception",
+    "theme": "applications",
     "catalogThumb": "./assets/images/pub-thumbs/segment-any-out-of-distribution-object.jpg"
   },
   {
@@ -156,7 +220,7 @@
     "description": "A comprehensive survey on audio-visual segmentation, covering various methods, datasets, and future directions.",
     "link": "https://arxiv.org/abs/2508.03724",
     "date": "2025-07",
-    "theme": "perception",
+    "theme": "applications",
     "catalogThumb": "./assets/images/pub-thumbs/from-waveforms-to-pixels-a-survey-on-audio-visual-segmentation.jpg"
   },
   {
@@ -184,7 +248,7 @@
       }
     ],
     "date": "2026-03",
-    "theme": "perception",
+    "theme": "applications",
     "catalogThumb": "./assets/images/pub-thumbs/mitigating-the-id-ood-tradeoff-in-open-set-test-time-adaptation.jpg"
   },
   {
@@ -207,7 +271,7 @@
       }
     ],
     "date": "2024-08",
-    "theme": "reasoning",
+    "theme": "applications",
     "catalogThumb": "./assets/images/pub-thumbs/measuring-aleatoric-and-epistemic-uncertainty-in-llms-empirical-evaluation-on-id.jpg"
   },
   {
