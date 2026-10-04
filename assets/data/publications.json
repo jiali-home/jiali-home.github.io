@@ -296,7 +296,7 @@
     "description": "Cross-modality selective state space models for audio-visual question answering.",
     "link": "https://sightsound.org/papers/2024/Huang_AV-Mamba_Cross-Modality_Selective_State_Space_Models_for_Audio-Visual_Question_Answering.pdf",
     "date": "2024-05",
-    "theme": "reasoning",
+    "theme": "applications",
     "catalogThumb": "./assets/images/pub-thumbs/av-mamba-cross-modality-selective-state-space-models-for-audio-visual-question-a.jpg"
   }
 ]
