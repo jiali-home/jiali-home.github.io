@@ -10,6 +10,7 @@
       "Weili Wu"
     ],
     "image": "./assets/images/talk_to_me.png",
+    "catalogThumb": "./assets/images/pub-thumbs/talking-to-me-or-someone-else-rethinking-talk-to-me-detection-in-egocentric-videos.jpg",
     "description": "We revisit talk-to-me detection in egocentric video, distinguishing speech directed at the camera wearer from talking to others, self-talk, and background speech in an online, frame-level setting.",
     "link": "https://arxiv.org/abs/2609.14118",
     "date": "2026-09",
@@ -32,6 +33,7 @@
       "Yuhang Zhao"
     ],
     "image": "./assets/images/sceneglance.png",
+    "catalogThumb": "./assets/images/pub-thumbs/what-to-distinguish-and-how-opportunities-and-challenges-of-augmenting-multiple.jpg",
     "description": "SceneGlance, a wearable AR system that segments important objects and distinguishes them by importance for people with low vision, studied in kitchen and outdoor settings.",
     "link": "https://doi.org/10.1145/3797867.3828974",
     "date": "2026-06",
@@ -68,6 +70,7 @@
       "Yunhui Guo"
     ],
     "image": "./assets/images/cure_ood.png",
+    "catalogThumb": "./assets/images/pub-thumbs/cure-ood-benchmarking-out-of-distribution-detection-for-survival-prediction.jpg",
     "description": "A benchmark for out-of-distribution detection in survival prediction.",
     "link": "https://arxiv.org/abs/2605.00350",
     "date": "2026-05",
@@ -184,6 +187,7 @@
       "Yunhui Guo"
     ],
     "image": "./assets/images/ood_survey.png",
+    "catalogThumb": "./assets/images/pub-thumbs/from-pixel-to-mask-a-survey-of-out-of-distribution-segmentation.jpg",
     "description": "A survey of out-of-distribution segmentation methods, benchmarks, and open challenges.",
     "link": "https://arxiv.org/abs/2508.10309",
     "date": "2025-08",
